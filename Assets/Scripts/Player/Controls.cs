@@ -18,6 +18,8 @@ public class Controls : MonoBehaviour
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference jumpAction;
     private GameObject cam;
+    private bool canMove = true;
+    private Vector2 input;
     void Start()
     {
         Cursor.visible = false;
@@ -42,6 +44,12 @@ public class Controls : MonoBehaviour
         jumpAction.action.Disable();
     }
 
+
+    public void ChangeMovementSpecific(bool x)
+    {
+        canMove = x;
+    }
+
     void Update()
     {
         groundedPlayer = controller.isGrounded;
@@ -57,8 +65,15 @@ public class Controls : MonoBehaviour
         camRight.y = 0;
         camForward.Normalize();
         camRight.Normalize();
+        if (canMove)
+        {
+            input = moveAction.action.ReadValue<Vector2>();
+        }
+        else
+        {
+            input = Vector2.zero;
+        }
 
-        Vector2 input = moveAction.action.ReadValue<Vector2>();
         Vector3 move = (camForward * input.y + camRight * input.x);
         move = Vector3.ClampMagnitude(move, 1f);
 
@@ -73,7 +88,6 @@ public class Controls : MonoBehaviour
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
-
         Vector3 finalMove = (move * playerSpeed) + (playerVelocity.y * Vector3.up);
         gameObject.transform.forward = camForward;
         controller.Move(finalMove * Time.deltaTime);

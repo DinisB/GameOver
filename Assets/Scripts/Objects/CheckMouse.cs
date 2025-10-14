@@ -1,19 +1,25 @@
 using UnityEngine;
-
-public class EnableOutline : MonoBehaviour
+using UnityEngine.InputSystem;
+public class CheckMouse : MonoBehaviour
 {
-    private Outline outline;
     private Ray raymouse;
     private RectTransform rect;
     private EnableMouse mouse;
-    private Color ogColor;
+    [SerializeField] private InputActionReference clickAction;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rect = FindAnyObjectByType<Canvas>().GetComponentInChildren<RectTransform>();
         mouse = FindAnyObjectByType<EnableMouse>().GetComponent<EnableMouse>();
-        outline = GetComponent<Outline>();
-        ogColor = outline.OutlineColor;
+    }
+    private void OnEnable()
+    {
+        clickAction.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        clickAction.action.Disable();
     }
 
     // Update is called once per frame
@@ -26,12 +32,11 @@ public class EnableOutline : MonoBehaviour
 
         if (Physics.Raycast(raymouse, out hit) && mouse.CanChange() == true)
         {
-            Color targetColor = (hit.transform == transform) ? Color.yellow : ogColor;
-            outline.OutlineColor = Color.Lerp(outline.OutlineColor, targetColor, Time.deltaTime * 10);
-        }
-        else
-        {
-            outline.OutlineColor = Color.Lerp(outline.OutlineColor, ogColor, Time.deltaTime * 10);
+            if (clickAction.action.triggered)
+            {
+                gameObject.GetComponent<StartMinigame>().enabled = true;
+                gameObject.GetComponent<StartMinigame>().MinigameBegin();
+            }
         }
     }
 }

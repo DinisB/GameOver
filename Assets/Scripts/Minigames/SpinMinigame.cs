@@ -10,6 +10,7 @@ public class SpinMinigame : MonoBehaviour
     [SerializeField] private Button[] slots;
     [SerializeField] private Button spin;
     [SerializeField] private Button proceed;
+    [SerializeField] private Button quit;
     private Button currentSlot;
     private EnableMouse mouse;
 
@@ -24,6 +25,8 @@ public class SpinMinigame : MonoBehaviour
         spin.onClick.AddListener(() => SpinSlot());
 
         proceed.onClick.AddListener(() => CheckSlots());
+
+        quit.onClick.AddListener(() => QuitMinigame());
 
         mouse = FindFirstObjectByType<EnableMouse>().GetComponent<EnableMouse>();
     }
@@ -81,9 +84,15 @@ public class SpinMinigame : MonoBehaviour
         {
             Debug.Log("Sucess");
             gameObject.SetActive(false);
-            mouse.ChangeMouse();
+            mouse.ChangeMouse(true, false);
         }
         else { Debug.Log("Wrong"); }
+    }
+
+    void QuitMinigame()
+    {
+        gameObject.SetActive(false);
+        mouse.ChangeMouse(true, false);
     }
 
     public enum PossibleSlots
