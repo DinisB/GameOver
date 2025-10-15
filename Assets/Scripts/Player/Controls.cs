@@ -74,7 +74,7 @@ public class Controls : MonoBehaviour
             input = Vector2.zero;
         }
 
-        Vector3 move = (camForward * input.y + camRight * input.x);
+        Vector3 move = camForward * input.y + camRight * input.x;
         move = Vector3.ClampMagnitude(move, 1f);
 
         if (move != Vector3.zero)

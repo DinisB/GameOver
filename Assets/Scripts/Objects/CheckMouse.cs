@@ -32,7 +32,7 @@ public class CheckMouse : MonoBehaviour
 
         if (Physics.Raycast(raymouse, out hit) && mouse.CanChange() == true)
         {
-            if (clickAction.action.triggered)
+            if (clickAction.action.triggered && hit.collider.name == gameObject.name)
             {
                 gameObject.GetComponent<StartMinigame>().enabled = true;
                 gameObject.GetComponent<StartMinigame>().MinigameBegin();

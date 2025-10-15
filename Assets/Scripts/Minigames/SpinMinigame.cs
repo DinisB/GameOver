@@ -13,6 +13,7 @@ public class SpinMinigame : MonoBehaviour
     [SerializeField] private Button quit;
     private Button currentSlot;
     private EnableMouse mouse;
+    private bool isChanging = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,7 +39,7 @@ public class SpinMinigame : MonoBehaviour
     }
     void SpinSlot()
     {
-        ChangeSlot(currentSlot);
+        if (!isChanging) { StartCoroutine(ChangeSlot(currentSlot)); }
     }
 
     void SelectSlot(Button btn)
@@ -46,11 +47,15 @@ public class SpinMinigame : MonoBehaviour
         currentSlot = btn;
     }
 
-    void ChangeSlot(Button btn)
+    IEnumerator ChangeSlot(Button btn)
     {
-        TMP_Text txt = btn.GetComponentInChildren<TMP_Text>();
+        int counter = 0;
+        isChanging = true;
+        while (counter != 5)
+        {
+            TMP_Text txt = btn.GetComponentInChildren<TMP_Text>();
 
-        List<PossibleSlots> list = new List<PossibleSlots>
+            List<PossibleSlots> list = new List<PossibleSlots>
     {
         PossibleSlots.Banana,
         PossibleSlots.Apple,
@@ -58,10 +63,14 @@ public class SpinMinigame : MonoBehaviour
         PossibleSlots.Cherry
     };
 
-        list.RemoveAll(s => s.ToString() == txt.text);
+            list.RemoveAll(s => s.ToString() == txt.text);
 
-        PossibleSlots randomSlot = list[Random.Range(0, list.Count)];
-        txt.text = randomSlot.ToString();
+            PossibleSlots randomSlot = list[Random.Range(0, list.Count)];
+            txt.text = randomSlot.ToString();
+            counter++;
+            yield return new WaitForSeconds(.1f);
+        }
+        isChanging = false;
     }
 
     void CheckSlots()
