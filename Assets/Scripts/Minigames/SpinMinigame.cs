@@ -49,11 +49,12 @@ public class SpinMinigame : MonoBehaviour
 
     IEnumerator ChangeSlot(Button btn)
     {
+        TMP_Text txt = btn.GetComponentInChildren<TMP_Text>();
         int counter = 0;
         isChanging = true;
+        string selected = null;
         while (counter != 5)
         {
-            TMP_Text txt = btn.GetComponentInChildren<TMP_Text>();
 
             List<PossibleSlots> list = new List<PossibleSlots>
     {
@@ -66,10 +67,12 @@ public class SpinMinigame : MonoBehaviour
             list.RemoveAll(s => s.ToString() == txt.text);
 
             PossibleSlots randomSlot = list[Random.Range(0, list.Count)];
+            if (selected == null) selected = randomSlot.ToString();
             txt.text = randomSlot.ToString();
             counter++;
             yield return new WaitForSeconds(.1f);
         }
+        txt.text = selected;
         isChanging = false;
     }
 
@@ -105,10 +108,10 @@ public class SpinMinigame : MonoBehaviour
     }
 
     public enum PossibleSlots
-{
-    Banana,
-    Apple,
-    Orange,
-    Cherry
-}
+    {
+        Banana,
+        Apple,
+        Orange,
+        Cherry
+    }
 }

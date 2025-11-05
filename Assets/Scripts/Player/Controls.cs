@@ -20,6 +20,7 @@ public class Controls : MonoBehaviour
     private GameObject cam;
     private bool canMove = true;
     private Vector2 input;
+    [SerializeField] private Animator anim;
     void Start()
     {
         Cursor.visible = false;
@@ -56,7 +57,9 @@ public class Controls : MonoBehaviour
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
+            anim.SetBool("Jump", false);
         }
+        else if (playerVelocity.y > 0) anim.SetBool("Jump", true);
 
         Vector3 camForward = cam.transform.forward;
         Vector3 camRight = cam.transform.right;
@@ -80,6 +83,11 @@ public class Controls : MonoBehaviour
         if (move != Vector3.zero)
         {
             transform.forward = move;
+            anim.SetBool("Walk", true);
+        }
+        else
+        {
+            anim.SetBool("Walk", false);
         }
 
         if (jumpAction.action.triggered && groundedPlayer && canJump)
@@ -91,5 +99,10 @@ public class Controls : MonoBehaviour
         Vector3 finalMove = (move * playerSpeed) + (playerVelocity.y * Vector3.up);
         gameObject.transform.forward = camForward;
         controller.Move(finalMove * Time.deltaTime);
+    }
+
+    public void JumpFromExternal(float jumpPower)
+    {
+        playerVelocity.y = jumpPower;
     }
 }

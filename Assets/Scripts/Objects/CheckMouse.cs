@@ -6,6 +6,7 @@ public class CheckMouse : MonoBehaviour
     private RectTransform rect;
     private EnableMouse mouse;
     [SerializeField] private InputActionReference clickAction;
+    [SerializeField] private float range = 8f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,12 +31,12 @@ public class CheckMouse : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(raymouse, out hit) && mouse.CanChange() == true)
+        if (Physics.Raycast(raymouse, out hit, range))
         {
             if (clickAction.action.triggered && hit.collider.name == gameObject.name)
             {
-                gameObject.GetComponent<StartMinigame>().enabled = true;
-                gameObject.GetComponent<StartMinigame>().MinigameBegin();
+                gameObject.GetComponent<StartSpinMinigame>().enabled = true;
+                gameObject.GetComponent<StartSpinMinigame>().MinigameBegin();
             }
         }
     }

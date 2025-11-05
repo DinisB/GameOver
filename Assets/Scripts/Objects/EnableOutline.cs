@@ -7,6 +7,8 @@ public class EnableOutline : MonoBehaviour
     private RectTransform rect;
     private EnableMouse mouse;
     private Color ogColor;
+
+    [SerializeField] private float range = 8f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,7 +26,7 @@ public class EnableOutline : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(raymouse, out hit) && mouse.CanChange() == true)
+        if (Physics.Raycast(raymouse, out hit, range))
         {
             Color targetColor = (hit.transform == transform) ? Color.yellow : ogColor;
             outline.OutlineColor = Color.Lerp(outline.OutlineColor, targetColor, Time.deltaTime * 10);

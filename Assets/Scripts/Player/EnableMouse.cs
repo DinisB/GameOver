@@ -7,8 +7,6 @@ public class EnableMouse : MonoBehaviour
     private bool mouse = false;
     [SerializeField] private GameObject cam;
     private CinemachineInputAxisController input;
-    [SerializeField] private InputActionReference mouseAction;
-    private bool canChange = true;
     private Controls moveScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,32 +18,15 @@ public class EnableMouse : MonoBehaviour
     {
         return mouse;
     }
-
-    public bool CanChange()
-    {
-        return canChange;
-    }
     public void ChangeMouse(bool x, bool y)
     {
         moveScript.ChangeMovementSpecific(x);
-        canChange = x;
         mouse = y;
-    }
-    private void OnEnable()
-    {
-        mouseAction.action.Enable();
-    }
-
-    private void OnDisable()
-    {
-        mouseAction.action.Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (mouseAction.action.triggered && canChange) mouse = !mouse;
-
         if (mouse)
         {
             moveScript.ChangeMovementSpecific(false);

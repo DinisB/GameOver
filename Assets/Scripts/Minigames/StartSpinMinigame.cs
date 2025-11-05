@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StartMinigame : MonoBehaviour
+public class StartSpinMinigame : MonoBehaviour
 {
     [SerializeField] private EnableMouse mouse;
     [SerializeField] private GameObject minigame;
