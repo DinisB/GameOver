@@ -64,6 +64,8 @@ public class Controls : MonoBehaviour
         if (move != Vector3.zero)
             transform.forward = move;
 
+        if (groundedPlayer) playerVelocity.y = 0;
+
         Vector3 horizontalMove = move * playerSpeed;
 
         // Salto normal / salto externo
