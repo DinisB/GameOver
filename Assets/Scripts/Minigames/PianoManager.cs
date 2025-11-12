@@ -7,6 +7,8 @@ public class PianoManager : MonoBehaviour
     [SerializeField] private RawImage[] pianoKeys;
     [SerializeField] private AudioClip[] pianoSounds;
     [SerializeField] private AudioSource pianoSource;
+    [SerializeField] private Button quit;
+    private EnableMouse mouse;
     private List<int> pianoTune = new List<int> {
     3, 2, 1, 2, 3, 3, 3,
     2, 2, 2,
@@ -19,6 +21,10 @@ public class PianoManager : MonoBehaviour
     void Start()
     {
         currentKey = new List<int>(pianoTune);
+
+        quit.onClick.AddListener(() => QuitMinigame());
+
+        mouse = FindFirstObjectByType<EnableMouse>().GetComponent<EnableMouse>();
     }
 
 
@@ -68,5 +74,11 @@ public class PianoManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    void QuitMinigame()
+    {
+        gameObject.SetActive(false);
+        mouse.ChangeMouse(true, false);
     }
 }

@@ -7,6 +7,7 @@ public class CheckMouse : MonoBehaviour
     private EnableMouse mouse;
     [SerializeField] private InputActionReference clickAction;
     [SerializeField] private float range = 8f;
+    [SerializeField] private int mini;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -35,8 +36,15 @@ public class CheckMouse : MonoBehaviour
         {
             if (clickAction.action.triggered && hit.collider.name == gameObject.name)
             {
-                gameObject.GetComponent<StartSpinMinigame>().enabled = true;
-                gameObject.GetComponent<StartSpinMinigame>().MinigameBegin();
+                if (mini == 0) {
+                    gameObject.GetComponent<StartSpinMinigame>().enabled = true;
+                    gameObject.GetComponent<StartSpinMinigame>().MinigameBegin(); }
+
+                if (mini == 1)
+                {
+                    gameObject.GetComponent<StartPianoMinigame>().enabled = true;
+                    gameObject.GetComponent<StartPianoMinigame>().MinigameBegin();
+                }
             }
         }
     }
