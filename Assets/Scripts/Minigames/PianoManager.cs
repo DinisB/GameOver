@@ -33,26 +33,29 @@ public class PianoManager : MonoBehaviour
                 if (i - 1 < pianoKeys.Length)
                 {
                     pianoSource.PlayOneShot(pianoSounds[i - 1]);
-                    pianoKeys[i - 1].color = Color.gray;
 
                     if (currentKey.Count > 0 && i == currentKey[0])
                     {
                         currentKey.RemoveAt(0);
                         Debug.Log("Certo!");
+                        pianoKeys[i - 1].color = Color.green;
                     }
                     else if (currentKey.Count == 1)
                     {
                         currentKey.RemoveAt(0);
                         Debug.Log("Ganhas-te!");
+                        pianoKeys[i - 1].color = Color.green;
                     }
                     else if (currentKey.Count == 0)
                     {
                         Debug.Log("Ganhas-te!");
+                        pianoKeys[i - 1].color = Color.green;
                     }
                     else
                     {
                         currentKey = new List<int>(pianoTune);
                         Debug.Log("Errado!");
+                        pianoKeys[i - 1].color = Color.red;
                     }
                 }
             }
