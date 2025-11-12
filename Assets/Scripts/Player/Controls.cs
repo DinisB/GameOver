@@ -7,6 +7,7 @@ public class Controls : MonoBehaviour
     private float playerSpeed = 5.0f;
     private float jumpHeight = 1.5f;
     private float gravityValue = -9.81f;
+    private float externalJump = 0f;
 
     [SerializeField] private bool canJump;
 
@@ -21,6 +22,7 @@ public class Controls : MonoBehaviour
     private bool canMove = true;
     private Vector2 input;
     [SerializeField] private Animator anim;
+
     void Start()
     {
         Cursor.visible = false;
@@ -45,7 +47,6 @@ public class Controls : MonoBehaviour
         jumpAction.action.Disable();
     }
 
-
     public void ChangeMovementSpecific(bool x)
     {
         canMove = x;
@@ -54,55 +55,47 @@ public class Controls : MonoBehaviour
     void Update()
     {
         groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
-        {
-            playerVelocity.y = 0f;
-            anim.SetBool("Jump", false);
-        }
-        else if (playerVelocity.y > 0) anim.SetBool("Jump", true);
 
-        Vector3 camForward = cam.transform.forward;
-        Vector3 camRight = cam.transform.right;
-
-        camForward.y = 0;
-        camRight.y = 0;
-        camForward.Normalize();
-        camRight.Normalize();
-        if (canMove)
-        {
-            input = moveAction.action.ReadValue<Vector2>();
-        }
-        else
-        {
-            input = Vector2.zero;
-        }
-
-        Vector3 move = camForward * input.y + camRight * input.x;
+        input = canMove ? moveAction.action.ReadValue<Vector2>() : Vector2.zero;
+        Vector3 move = cam.transform.forward * input.y + cam.transform.right * input.x;
+        move.y = 0;
         move = Vector3.ClampMagnitude(move, 1f);
 
         if (move != Vector3.zero)
-        {
             transform.forward = move;
-            anim.SetBool("Walk", true);
-        }
-        else
-        {
-            anim.SetBool("Walk", false);
-        }
 
+        Vector3 horizontalMove = move * playerSpeed;
+
+        // Salto normal / salto externo
         if (jumpAction.action.triggered && groundedPlayer && canJump)
         {
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
+        }
+        else if (externalJump > 0f)
+        {
+            playerVelocity.y = externalJump;
+            externalJump = 0f;
         }
 
+        // gravidade
         playerVelocity.y += gravityValue * Time.deltaTime;
-        Vector3 finalMove = (move * playerSpeed) + (playerVelocity.y * Vector3.up);
-        gameObject.transform.forward = camForward;
-        controller.Move(finalMove * Time.deltaTime);
-    }
 
-    public void JumpFromExternal(float jumpPower)
+        // Movimento final
+        Vector3 finalMove = horizontalMove + playerVelocity.y * Vector3.up;
+        controller.Move(finalMove * Time.deltaTime);
+
+        // Animations
+        anim.SetBool("Walk", move != Vector3.zero);
+        anim.SetBool("Jump", playerVelocity.y > 0);
+    }
+    public bool IsGrounded()
     {
-        playerVelocity.y = jumpPower;
+        return groundedPlayer;
+    }
+    public void JumpFromExternal(float jumpForce)
+    {
+        externalJump = jumpForce;
     }
 }
+
+
