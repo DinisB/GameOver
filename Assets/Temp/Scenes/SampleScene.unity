@@ -2560,7 +2560,7 @@ MonoBehaviour:
       Owner: {fileID: 307221597}
       Enabled: 1
       Input:
-        InputAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+        InputAction: {fileID: -5630151704836100654, guid: a635ee90c394c59479bf39209b4e13cb, type: 3}
         Gain: 10
         LegacyInput: 
         LegacyGain: 1
@@ -2573,7 +2573,7 @@ MonoBehaviour:
       Owner: {fileID: 307221597}
       Enabled: 1
       Input:
-        InputAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+        InputAction: {fileID: -5630151704836100654, guid: a635ee90c394c59479bf39209b4e13cb, type: 3}
         Gain: -10
         LegacyInput: 
         LegacyGain: 1
