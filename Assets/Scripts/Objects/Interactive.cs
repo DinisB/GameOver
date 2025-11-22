@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Interactive : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Interactive : MonoBehaviour
     public InteractiveData  interactiveData => _interactiveData;
     public string           inventoryName   => _interactiveData.inventoryName;
     public Sprite           inventoryIcon   => _interactiveData.inventoryIcon;
+    public UnityEvent onInteractInstance;
 
     void Awake()
     {
@@ -109,7 +111,7 @@ public class Interactive : MonoBehaviour
         CheckDependentsRequirements();
         DoIndirectInteractions();
 
-        _interactiveData.onInteract?.Invoke();
+        onInteractInstance?.Invoke();
 
         PlayAnimation(_interactionManager.interactAnimationName);
     }

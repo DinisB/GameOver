@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e18880bb7265dec419e109baebf1cb25, type: 3}
-  m_Name: Lever
+  m_Name: Fuse
   m_EditorClassIdentifier: 
   type: 0
   startsOn: 1
-  inventoryName: Lever
-  inventoryIcon: {fileID: 21300000, guid: 1541e2d5d22164948bac727551e58592, type: 3}
+  inventoryName: Fuse
+  inventoryIcon: {fileID: 21300000, guid: 64f792eca917a024b97a02ec765f49df, type: 3}
   requirements: []
   requirementsMessage: 
   interactionMessages:
-  - Lever
+  - Fuse

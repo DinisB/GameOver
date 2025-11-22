@@ -21,7 +21,6 @@ public class Controls : MonoBehaviour
     private GameObject cam;
     private bool canMove = true;
     private Vector2 input;
-    [SerializeField] private Animator anim;
 
     void Start()
     {
@@ -85,10 +84,6 @@ public class Controls : MonoBehaviour
         // Movimento final
         Vector3 finalMove = horizontalMove + playerVelocity.y * Vector3.up;
         controller.Move(finalMove * Time.deltaTime);
-
-        // Animations
-        anim.SetBool("Walk", move != Vector3.zero);
-        anim.SetBool("Jump", playerVelocity.y > 0);
     }
     public bool IsGrounded()
     {

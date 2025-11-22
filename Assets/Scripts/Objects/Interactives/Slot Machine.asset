@@ -12,26 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18880bb7265dec419e109baebf1cb25, type: 3}
   m_Name: Slot Machine
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   startsOn: 1
   inventoryName: Slot Machine
   inventoryIcon: {fileID: 0}
   requirements:
   - {fileID: 11400000, guid: e948fc0044897554a8564d596f2019c5, type: 2}
-  requirementsMessage: Needs Lever
+  - {fileID: 11400000, guid: adcae9df50672db4e9e176cc1c75f9db, type: 2}
+  requirementsMessage: Needs Lever and Fuse
   interactionMessages: []
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
