@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "InteractiveData", menuName = "Scriptable Objects/InteractiveData")]
 public class InteractiveData : ScriptableObject
@@ -12,5 +13,6 @@ public class InteractiveData : ScriptableObject
     public InteractiveData[]    requirements;
     public string               requirementsMessage;
     public string[]             interactionMessages;
+    public UnityEvent onInteract;
 }
 

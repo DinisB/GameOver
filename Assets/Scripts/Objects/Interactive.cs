@@ -109,6 +109,8 @@ public class Interactive : MonoBehaviour
         CheckDependentsRequirements();
         DoIndirectInteractions();
 
+        _interactiveData.onInteract?.Invoke();
+
         PlayAnimation(_interactionManager.interactAnimationName);
     }
 

@@ -36,10 +36,6 @@ public class CheckMouse : MonoBehaviour
         {
             if (clickAction.action.triggered && hit.collider.name == gameObject.name)
             {
-                if (mini == 0) {
-                    gameObject.GetComponent<StartSpinMinigame>().enabled = true;
-                    gameObject.GetComponent<StartSpinMinigame>().MinigameBegin(); }
-
                 if (mini == 1)
                 {
                     gameObject.GetComponent<StartPianoMinigame>().enabled = true;
