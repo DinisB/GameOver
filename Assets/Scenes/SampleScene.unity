@@ -5931,21 +5931,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8281560202221597816, guid: e076921b436f1e448aaf8dfa511e0c6b, type: 3}
   m_PrefabInstance: {fileID: 868165172}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &397584372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 397584368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd564e0b206e8fd479c9916888d754f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clickAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  range: 8
-  mini: 1
 --- !u!114 &397584373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6529,6 +6514,35 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.099999994, y: 0.11941942, z: 0.099999845}
   m_Center: {x: -0.000000018626451, y: -0.009709501, z: 0.00000017881393}
+--- !u!114 &397584380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397584368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e4a75b5e9c0f594b966b53a65e05856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactiveData: {fileID: 11400000, guid: fe3e0b2ff68b85b48b06b014c9cc3468, type: 2}
+  isOn: 0
+  onInteractInstance:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 397584375}
+        m_TargetAssemblyTypeName: StartPianoMinigame, Assembly-CSharp
+        m_MethodName: MinigameBegin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &407108795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12027,7 +12041,7 @@ PrefabInstance:
       addedObject: {fileID: 397584373}
     - targetCorrespondingSourceObject: {fileID: 8281560202221597816, guid: e076921b436f1e448aaf8dfa511e0c6b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 397584372}
+      addedObject: {fileID: 397584380}
   m_SourcePrefab: {fileID: 100100000, guid: e076921b436f1e448aaf8dfa511e0c6b, type: 3}
 --- !u!4 &868165173 stripped
 Transform:
