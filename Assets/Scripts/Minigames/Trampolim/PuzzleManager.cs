@@ -17,7 +17,13 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private GameObject objectToSpawn;
     [SerializeField] private Transform spawnPoint;
 
+    [Header("Emissive Feedback Material")]
+    public Renderer emissiveRenderer;   
+    public Material emissiveGreen;     
+    public Material emissiveRed;        
+
     [Header("Trampolins")]
+    [SerializeField] private List<Color> baseColors = new List<Color>();
     [SerializeField] private List<Trampolines> trampolines = new List<Trampolines>();
 
     private int currentStep = 0;
@@ -29,7 +35,10 @@ public class PuzzleManager : MonoBehaviour
         if (currentStep >= correctOrder.Count) return;
 
         bool correct = trampolineColor == correctOrder[currentStep];
-        feedbackLight.color = correct ? Color.green : Color.red;
+        
+
+        if (emissiveRenderer != null)
+            emissiveRenderer.material = correct ? emissiveGreen : emissiveRed;
 
 
         if (correct)
@@ -58,26 +67,22 @@ public class PuzzleManager : MonoBehaviour
     }
     private void ShuffleTrampolineOrder()
     {
-        // Cria uma cópia das cores originais
-        List<Color> shuffledColors = new List<Color>(correctOrder);
+        // Copiar as 4 cores base
+        List<Color> shuffled = new List<Color>(baseColors);
 
-        // Embaralha a lista
-        for (int i = 0; i < shuffledColors.Count; i++)
+        // Baralhar (Fisher–Yates)
+        for (int i = 0; i < shuffled.Count; i++)
         {
-            Color temp = shuffledColors[i];
-            int randomIndex = Random.Range(i, shuffledColors.Count);
-            shuffledColors[i] = shuffledColors[randomIndex];
-            shuffledColors[randomIndex] = temp;
+            int randomIndex = Random.Range(i, shuffled.Count);
+            (shuffled[i], shuffled[randomIndex]) = (shuffled[randomIndex], shuffled[i]);
         }
 
-        // Aplica as cores embaralhadas aos trampolins
+        // Aplicar aos trampolins
         for (int i = 0; i < trampolines.Count; i++)
         {
-            trampolines[i].SetColor(shuffledColors[i]);
+            trampolines[i].SetColor(shuffled[i]);
         }
-
-        // Define nova ordem correta igual à lista embaralhada
-        correctOrder = shuffledColors;
     }
+
 }
 
