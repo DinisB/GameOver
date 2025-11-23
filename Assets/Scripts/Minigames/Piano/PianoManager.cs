@@ -8,6 +8,8 @@ public class PianoManager : MonoBehaviour
     [SerializeField] private AudioClip[] pianoSounds;
     [SerializeField] private AudioSource pianoSource;
     [SerializeField] private Button quit;
+    [SerializeField] private GameObject keyg;
+    private bool completed = false;
     private EnableMouse mouse;
     private List<int> pianoTune = new List<int> {
     3, 2, 1, 2, 3, 3, 3,
@@ -45,17 +47,13 @@ public class PianoManager : MonoBehaviour
                         currentKey.RemoveAt(0);
                         Debug.Log("Certo!");
                         pianoKeys[i - 1].color = Color.green;
-                    }
-                    else if (currentKey.Count == 1)
-                    {
-                        currentKey.RemoveAt(0);
-                        Debug.Log("Ganhas-te!");
-                        pianoKeys[i - 1].color = Color.green;
-                    }
-                    else if (currentKey.Count == 0)
-                    {
-                        Debug.Log("Ganhas-te!");
-                        pianoKeys[i - 1].color = Color.green;
+                        if (currentKey.Count == 0 && !completed)
+                        {
+                            completed = true;
+                            Debug.Log("Ganhas-te!");
+                            keyg.SetActive(true);
+                            QuitMinigame();
+                        }
                     }
                     else
                     {

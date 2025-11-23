@@ -11,9 +11,11 @@ public class SpinMinigame : MonoBehaviour
     [SerializeField] private Button spin;
     [SerializeField] private Button proceed;
     [SerializeField] private Button quit;
+    [SerializeField] private GameObject key;
     private Button currentSlot;
     private EnableMouse mouse;
     private bool isChanging = false;
+    private bool completed = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -92,9 +94,11 @@ public class SpinMinigame : MonoBehaviour
             num++;
         }
 
-        if (count == 3)
+        if (count == 3 && !completed)
         {
             Debug.Log("Sucess");
+            completed = true;
+            key.SetActive(true);
             gameObject.SetActive(false);
             mouse.ChangeMouse(true, false);
         }

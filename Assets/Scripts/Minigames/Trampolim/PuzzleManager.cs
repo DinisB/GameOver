@@ -14,8 +14,7 @@ public class PuzzleManager : MonoBehaviour
     public AudioClip successSound;
 
     [Header("Spawn Object")]
-    [SerializeField] private GameObject objectToSpawn;
-    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private GameObject keyg;
 
     [Header("Emissive Feedback Material")]
     public Renderer emissiveRenderer;
@@ -52,7 +51,7 @@ public class PuzzleManager : MonoBehaviour
             {
                 puzzleCompleted = true;
                 audioSource.PlayOneShot(successSound, 1f);
-                Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation);
+                keyg.SetActive(true);
             }
         }
         else

@@ -31,7 +31,7 @@ public class Interactive : MonoBehaviour
         _interactionCount   = 0;
         isOn                = _interactiveData.startsOn;
 
-        _interactionManager.RegisterInteractive(this);
+        _interactionManager?.RegisterInteractive(this);
     }
 
     public void AddRequirement(Interactive requirement)
