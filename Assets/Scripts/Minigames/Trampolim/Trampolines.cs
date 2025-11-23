@@ -9,22 +9,22 @@ public class Trampolines : MonoBehaviour
     [SerializeField] private AudioSource jumpSound;
     [SerializeField] private Renderer objectRenderer;
     [SerializeField] private float jumpForce = 10f;
+    private Controls playerControls;
 
     //construtores e metodos
     private void Start()
     {
         objectRenderer.material.color = trampolineColor;
+        playerControls = FindFirstObjectByType<Controls>().GetComponent<Controls>();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            // Para fazer o player saltar
-            Controls playerControls = other.GetComponent<Controls>();
             playerControls.JumpFromExternal(jumpForce);
 
             // Usa o PuzzleManager
-            puzzleManager.CheckTrampoline(trampolineColor, transform.position);
+            puzzleManager.CheckTrampoline(trampolineColor);
 
             jumpSound.Play();
 

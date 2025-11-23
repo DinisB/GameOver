@@ -18,9 +18,9 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
 
     [Header("Emissive Feedback Material")]
-    public Renderer emissiveRenderer;   
-    public Material emissiveGreen;     
-    public Material emissiveRed;        
+    public Renderer emissiveRenderer;
+    public Material emissiveGreen;
+    public Material emissiveRed;
 
     [Header("Trampolins")]
     [SerializeField] private List<Color> baseColors = new List<Color>();
@@ -29,16 +29,14 @@ public class PuzzleManager : MonoBehaviour
     private int currentStep = 0;
     private bool puzzleCompleted = false;
 
-    public void CheckTrampoline(Color trampolineColor, Vector3 position)
+    public void CheckTrampoline(Color trampolineColor)
     {
         if (puzzleCompleted) return;
         if (currentStep >= correctOrder.Count) return;
 
         bool correct = trampolineColor == correctOrder[currentStep];
-        
 
-        if (emissiveRenderer != null)
-            emissiveRenderer.material = correct ? emissiveGreen : emissiveRed;
+        emissiveRenderer.material = correct ? emissiveGreen : emissiveRed;
 
 
         if (correct)
@@ -70,7 +68,7 @@ public class PuzzleManager : MonoBehaviour
         // Copiar as 4 cores base
         List<Color> shuffled = new List<Color>(baseColors);
 
-        // Baralhar (Fisher–Yates)
+        // Baralhar (Fisherï¿½Yates)
         for (int i = 0; i < shuffled.Count; i++)
         {
             int randomIndex = Random.Range(i, shuffled.Count);
