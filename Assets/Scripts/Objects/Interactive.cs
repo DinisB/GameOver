@@ -87,7 +87,7 @@ public class Interactive : MonoBehaviour
     {
         if (direct && IsType(InteractiveData.Type.Indirect))
             return;
-        else if (IsType(InteractiveData.Type.Pickable) && !_playerInventory.IsFull())
+        else if (IsType(InteractiveData.Type.Pickable))
             PickUpInteractive();
         else if (IsType(InteractiveData.Type.InteractOnce) || IsType(InteractiveData.Type.InteractMulti))
             DoDirectInteraction();
@@ -97,6 +97,14 @@ public class Interactive : MonoBehaviour
 
     private void PickUpInteractive()
     {
+        Interactive oldItem = _playerInventory.GetSelected();
+
+        if (oldItem != null)
+        {
+            _playerInventory.Remove(oldItem);
+            oldItem.gameObject.SetActive(true);
+        }
+
         _playerInventory.Add(this);
         gameObject.SetActive(false);
     }
