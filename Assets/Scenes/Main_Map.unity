@@ -404,7 +404,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: dbd137705a4e5f546bfa1cb49cbca39e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 06906aa81d2ec6548be286b4282ae4cb, type: 2}
+      objectReference: {fileID: 2100000, guid: 12ff5eb564f2e2a42a81c6c2a2b41f31, type: 2}
     - target: {fileID: 919132149155446097, guid: dbd137705a4e5f546bfa1cb49cbca39e, type: 3}
       propertyPath: m_Name
       value: ARCADE balcao
@@ -2209,11 +2209,11 @@ PrefabInstance:
     - target: {fileID: 3740920955401534383, guid: 1813f0ed763cf24428714f5b7e27cd79, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: c20df5793a86daa44bd095bf15c92303, type: 2}
+      objectReference: {fileID: 2100000, guid: d89f150c394f7be4aab7a697c8212a59, type: 2}
     - target: {fileID: 3740920955401534383, guid: 1813f0ed763cf24428714f5b7e27cd79, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: c20df5793a86daa44bd095bf15c92303, type: 2}
+      objectReference: {fileID: 2100000, guid: 12ff5eb564f2e2a42a81c6c2a2b41f31, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1683499191303609803, guid: 1813f0ed763cf24428714f5b7e27cd79, type: 3}
@@ -3806,7 +3806,7 @@ PrefabInstance:
     - target: {fileID: 4935700296026698555, guid: 58922fee2d2d46844a60d43c02419635, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: c20df5793a86daa44bd095bf15c92303, type: 2}
+      objectReference: {fileID: 2100000, guid: 12ff5eb564f2e2a42a81c6c2a2b41f31, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7305,7 +7305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9b76b0a72649084cb2e2d1ccb2c71c3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.6942799
+      value: 1.6813
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9b76b0a72649084cb2e2d1ccb2c71c3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12678,7 +12678,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: ed1b06587837dc245b3f80bb629bf6f0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 06906aa81d2ec6548be286b4282ae4cb, type: 2}
+      objectReference: {fileID: 2100000, guid: 12ff5eb564f2e2a42a81c6c2a2b41f31, type: 2}
     - target: {fileID: 919132149155446097, guid: ed1b06587837dc245b3f80bb629bf6f0, type: 3}
       propertyPath: m_Name
       value: ARCADE vitrine
@@ -13715,7 +13715,7 @@ PrefabInstance:
     - target: {fileID: -6314562686666201287, guid: e076921b436f1e448aaf8dfa511e0c6b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 1de9d1113c59efd43b055630aed5fea6, type: 2}
+      objectReference: {fileID: 2100000, guid: d89f150c394f7be4aab7a697c8212a59, type: 2}
     - target: {fileID: 919132149155446097, guid: e076921b436f1e448aaf8dfa511e0c6b, type: 3}
       propertyPath: m_Name
       value: MUSIC piano
@@ -13723,7 +13723,7 @@ PrefabInstance:
     - target: {fileID: 7776594265109037180, guid: e076921b436f1e448aaf8dfa511e0c6b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 06906aa81d2ec6548be286b4282ae4cb, type: 2}
+      objectReference: {fileID: 2100000, guid: 12ff5eb564f2e2a42a81c6c2a2b41f31, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -5525380005753893801, guid: e076921b436f1e448aaf8dfa511e0c6b, type: 3}
@@ -23075,11 +23075,11 @@ PrefabInstance:
     - target: {fileID: -6719473796157873949, guid: 79d7f7629588e0443aa3a2ab54b5288f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: c20df5793a86daa44bd095bf15c92303, type: 2}
+      objectReference: {fileID: 2100000, guid: d89f150c394f7be4aab7a697c8212a59, type: 2}
     - target: {fileID: -6719473796157873949, guid: 79d7f7629588e0443aa3a2ab54b5288f, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 06906aa81d2ec6548be286b4282ae4cb, type: 2}
+      objectReference: {fileID: 2100000, guid: 12ff5eb564f2e2a42a81c6c2a2b41f31, type: 2}
     - target: {fileID: 919132149155446097, guid: 79d7f7629588e0443aa3a2ab54b5288f, type: 3}
       propertyPath: m_Name
       value: ARCADE mini slot machine
@@ -25940,10 +25940,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -120.401
       objectReference: {fileID: 0}
+    - target: {fileID: 298507157331528330, guid: 4c46fc4500b41c34b93efa5bfb1f438d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 12ff5eb564f2e2a42a81c6c2a2b41f31, type: 2}
+    - target: {fileID: 328160303393390259, guid: 4c46fc4500b41c34b93efa5bfb1f438d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 12ff5eb564f2e2a42a81c6c2a2b41f31, type: 2}
     - target: {fileID: 919132149155446097, guid: 4c46fc4500b41c34b93efa5bfb1f438d, type: 3}
       propertyPath: m_Name
       value: MUSIC nota direita
       objectReference: {fileID: 0}
+    - target: {fileID: 2870344453567504205, guid: 4c46fc4500b41c34b93efa5bfb1f438d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 12ff5eb564f2e2a42a81c6c2a2b41f31, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31994,10 +32006,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -257409547169450083, guid: 8d2eee8e037a12245ba01180892bc896, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d89f150c394f7be4aab7a697c8212a59, type: 2}
+    - target: {fileID: 713669045920883641, guid: 8d2eee8e037a12245ba01180892bc896, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d89f150c394f7be4aab7a697c8212a59, type: 2}
     - target: {fileID: 919132149155446097, guid: 8d2eee8e037a12245ba01180892bc896, type: 3}
       propertyPath: m_Name
       value: MUSIC nota esquerda (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8667190779724247673, guid: 8d2eee8e037a12245ba01180892bc896, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d89f150c394f7be4aab7a697c8212a59, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -37079,8 +37103,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c20df5793a86daa44bd095bf15c92303, type: 2}
-  - {fileID: 2100000, guid: 06906aa81d2ec6548be286b4282ae4cb, type: 2}
+  - {fileID: 2100000, guid: 12ff5eb564f2e2a42a81c6c2a2b41f31, type: 2}
+  - {fileID: 2100000, guid: d89f150c394f7be4aab7a697c8212a59, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37944,7 +37968,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c20df5793a86daa44bd095bf15c92303, type: 2}
+  - {fileID: 2100000, guid: 12ff5eb564f2e2a42a81c6c2a2b41f31, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
