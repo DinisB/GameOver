@@ -18,4 +18,5 @@ MonoBehaviour:
   inventoryIcon: {fileID: 0}
   requirements: []
   requirementsMessage: 
-  interactionMessages: []
+  interactionMessages:
+  - Click me for a Game Over
