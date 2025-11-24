@@ -8,7 +8,7 @@ public class Trampolines : MonoBehaviour
     [SerializeField] private PuzzleManager puzzleManager;
     [SerializeField] private AudioSource jumpSound;
     [SerializeField] private Renderer objectRenderer;
-    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float jumpForce = 5f;
     private Controls playerControls;
 
     //construtores e metodos
