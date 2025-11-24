@@ -8,7 +8,6 @@ public class Controls : MonoBehaviour
     private float jumpHeight = 1.5f;
     private float gravityValue = -9.81f;
     private float externalJump = 0f;
-    private float height = 2.5f;
 
     [SerializeField] private bool canJump;
 
@@ -79,7 +78,6 @@ public class Controls : MonoBehaviour
             externalJump = 0f;
         }
 
-        controller.height = height;
 
         // gravidade
         playerVelocity.y += gravityValue * Time.deltaTime;
