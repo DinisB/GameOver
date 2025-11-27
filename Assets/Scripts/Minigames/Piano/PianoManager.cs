@@ -9,6 +9,7 @@ public class PianoManager : MonoBehaviour
     [SerializeField] private AudioSource pianoSource;
     [SerializeField] private Button quit;
     [SerializeField] private GameObject keyg;
+    [SerializeField] private GameObject lightZone;
     private bool completed = false;
     private EnableMouse mouse;
     private List<int> pianoTune = new List<int> {
@@ -52,6 +53,7 @@ public class PianoManager : MonoBehaviour
                             completed = true;
                             Debug.Log("Ganhas-te!");
                             keyg.SetActive(true);
+                            lightZone.SetActive(true);
                             QuitMinigame();
                         }
                     }
