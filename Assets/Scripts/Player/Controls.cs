@@ -31,7 +31,7 @@ public class Controls : MonoBehaviour
 
     private void Awake()
     {
-        controller = gameObject.AddComponent<CharacterController>();
+        controller = gameObject.GetComponent<CharacterController>();
     }
 
     private void OnEnable()
