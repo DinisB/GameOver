@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Controls : MonoBehaviour
 {
-    private float playerSpeed = 5.0f;
+    [SerializeField] private float playerSpeed = 5.0f;
     private float jumpHeight = 1.5f;
     private float gravityValue = -9.81f;
     private float externalJump = 0f;

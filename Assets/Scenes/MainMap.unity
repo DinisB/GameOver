@@ -4021,7 +4021,7 @@ Transform:
   m_GameObject: {fileID: 307221593}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -29094,6 +29094,7 @@ GameObject:
   - component: {fileID: 1557809613}
   - component: {fileID: 1557809614}
   - component: {fileID: 1557809615}
+  - component: {fileID: 1557809616}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -29126,6 +29127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b77f4246ec7ca48a0fe4f75e940a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSpeed: 3.75
   canJump: 1
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
@@ -29175,10 +29177,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.77
+  m_Radius: 0.43
+  m_Height: 2.13
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.19304788, z: 0}
 --- !u!23 &1557809610
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29284,6 +29286,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiManager: {fileID: 1570640566}
   _maxInteractionDistance: 1.5
+--- !u!143 &1557809616
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557809604}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1561494674 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5acfbe1cb9994404886007bc04938400, type: 3}
