@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 
 public class PianoManager : MonoBehaviour
@@ -82,5 +83,56 @@ public class PianoManager : MonoBehaviour
     {
         gameObject.SetActive(false);
         mouse.ChangeMouse(true, false);
+    }
+
+    public void ClickButton(int num)
+    {
+        for (int i = 1; i <= 4; i++)
+        {
+            if (num == i)
+            {
+                if (i - 1 < pianoKeys.Length)
+                {
+                    pianoSource.PlayOneShot(pianoSounds[i - 1]);
+
+                    if (currentKey.Count > 0 && i == currentKey[0])
+                    {
+                        currentKey.RemoveAt(0);
+                        Debug.Log("Certo!");
+                        pianoKeys[i - 1].color = Color.green;
+                        if (currentKey.Count == 0 && !completed)
+                        {
+                            completed = true;
+                            Debug.Log("Ganhas-te!");
+                            keyg.SetActive(true);
+                            lightZone.SetActive(true);
+                            fruit.SetActive(true);
+                            QuitMinigame();
+                        }
+                    }
+                    else
+                    {
+                        currentKey = new List<int>(pianoTune);
+                        Debug.Log("Errado!");
+                        pianoKeys[i - 1].color = Color.red;
+                    }
+                }
+            }
+        }
+
+        StartCoroutine(ResetSlots());
+    }
+
+    IEnumerator ResetSlots()
+    {
+        for (int i = 1; i <= 14; i++)
+        {
+            yield return null;
+        }
+        for (int i = 1; i <= 4; i++)
+        {
+            pianoKeys[i - 1].color = Color.white;
+        }
+
     }
 }

@@ -9,7 +9,6 @@ public class SpinMinigame : MonoBehaviour
 {
     [SerializeField] private Button[] slots;
     [SerializeField] private Button spin;
-    [SerializeField] private Button proceed;
     [SerializeField] private Button quit;
     [SerializeField] private GameObject key;
     private Button currentSlot;
@@ -26,8 +25,6 @@ public class SpinMinigame : MonoBehaviour
         }
 
         spin.onClick.AddListener(() => SpinSlot());
-
-        proceed.onClick.AddListener(() => CheckSlots());
 
         quit.onClick.AddListener(() => QuitMinigame());
 
@@ -76,6 +73,7 @@ public class SpinMinigame : MonoBehaviour
         }
         txt.text = selected;
         isChanging = false;
+        CheckSlots();
     }
 
     void CheckSlots()
