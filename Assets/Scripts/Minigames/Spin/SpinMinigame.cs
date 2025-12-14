@@ -73,10 +73,10 @@ public class SpinMinigame : MonoBehaviour
         }
         txt.text = selected;
         isChanging = false;
-        CheckSlots();
+        StartCoroutine(CheckSlots());
     }
 
-    void CheckSlots()
+    IEnumerator CheckSlots()
     {
         int count = 0;
         string[] code = File.ReadAllLines(Application.streamingAssetsPath + '/' + "code.txt");
@@ -96,6 +96,11 @@ public class SpinMinigame : MonoBehaviour
         {
             Debug.Log("Sucess");
             completed = true;
+            foreach (Button btn in slots)
+            {
+                btn.image.color = Color.green;
+            }
+            yield return new WaitForSeconds(1);
             key.SetActive(true);
             gameObject.SetActive(false);
             mouse.ChangeMouse(true, false);
