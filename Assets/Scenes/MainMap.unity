@@ -14215,12 +14215,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830118461}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.09119388, y: 0.4886371, z: 0.09334791, w: 0.8626724}
-  m_LocalPosition: {x: 7.2510924, y: -1.1756401, z: -1.6976528}
-  m_LocalScale: {x: 0.29577717, y: 0.29577717, z: 0.29577717}
+  m_LocalRotation: {x: 0.08339215, y: 0.10041378, z: -0.5717471, w: 0.80998033}
+  m_LocalPosition: {x: -0.124523185, y: -6.1648393, z: 1.1774963}
+  m_LocalScale: {x: 3.7460213, y: 3.7460217, z: 3.7460215}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1157448487}
   m_LocalEulerAnglesHint: {x: -14.393, y: 58.518, z: 4.259}
 --- !u!1001 &831420045
 PrefabInstance:
@@ -24214,12 +24214,12 @@ GameObject:
   - component: {fileID: 1157448486}
   - component: {fileID: 1157448485}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: ShaderDONT_REMOVE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1157448485
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24285,7 +24285,8 @@ Transform:
   m_LocalPosition: {x: 6.8248134, y: -1.0945474, z: -1.4580964}
   m_LocalScale: {x: 0.07895768, y: 0.07895768, z: 0.07895768}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 830118465}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -13.952, y: 43.051, z: 78.503}
 --- !u!1 &1157914507
@@ -42082,4 +42083,3 @@ SceneRoots:
   - {fileID: 1878616678}
   - {fileID: 1330836937}
   - {fileID: 1157448487}
-  - {fileID: 830118465}
