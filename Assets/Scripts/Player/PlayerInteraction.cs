@@ -2,30 +2,42 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] private UIManager  _uiManager;
-    [SerializeField] private float      _maxInteractionDistance;
+    [SerializeField] private UIManager _uiManager;
+    [SerializeField] private float _maxInteractionDistance;
 
-    private Transform   _cameraTransform;
+    private Transform _cameraTransform;
     private Interactive _currentInteractive;
-    private bool        _refreshCurrentInteractive;
+    private bool _refreshCurrentInteractive;
+
+    private Ray raymouse;
+    private RectTransform rect;
+    private EnableMouse mouse;
+    [SerializeField] private float range = 8f;
 
     void Start()
     {
-        _cameraTransform            = GetComponentInChildren<Camera>().transform;
-        _currentInteractive         = null;
-        _refreshCurrentInteractive  = false;
+        rect = FindAnyObjectByType<Canvas>().GetComponentInChildren<RectTransform>();
+        mouse = FindAnyObjectByType<EnableMouse>().GetComponent<EnableMouse>();
+        _cameraTransform = GetComponentInChildren<Camera>().transform;
+        _currentInteractive = null;
+        _refreshCurrentInteractive = false;
     }
 
     void Update()
     {
+        if (mouse.MouseEnabled() == true) { raymouse = Camera.main.ScreenPointToRay(Input.mousePosition); }
+        else if (mouse.MouseEnabled() == false) { raymouse = Camera.main.ScreenPointToRay(rect.position); }
+
         UpdateCurrentInteractive();
         CheckForPlayerInteraction();
     }
 
     private void UpdateCurrentInteractive()
     {
-        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hitInfo, _maxInteractionDistance))
-            CheckObjectForInteraction(hitInfo.collider);
+        RaycastHit hit;
+        
+        if (Physics.Raycast(raymouse, out hit, range))
+            CheckObjectForInteraction(hit.collider);
         else if (_currentInteractive != null)
             ClearCurrentInteractive();
     }
@@ -52,8 +64,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void SetCurrentInteractive(Interactive interactive)
     {
-        _currentInteractive         = interactive;
-        _refreshCurrentInteractive  = false;
+        _currentInteractive = interactive;
+        _refreshCurrentInteractive = false;
 
         string interactionMessage = interactive.GetInteractionMessage();
 

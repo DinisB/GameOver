@@ -6270,8 +6270,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0888182, y: 0.09237307, z: 0.083090685}
-  m_Center: {x: 0.010856312, y: -0.030441126, z: 0.0046244455}
+  m_Size: {x: 0.0888182, y: 0.09237307, z: 0.076852135}
+  m_Center: {x: 0.010856312, y: -0.030441128, z: 0.007743722}
 --- !u!65 &337464125
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6291,8 +6291,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.11053094, y: 0.15325528, z: 0.05412033}
-  m_Center: {x: -0.000000010760543, y: -0.00000009115181, z: -0.019109484}
+  m_Size: {x: 0.11053094, y: 0.15325528, z: 0.038609024}
+  m_Center: {x: -0.000000010760543, y: -0.000000091266735, z: -0.011353824}
 --- !u!4 &341980484 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4985957a58bcc6041b9488509b3ece48, type: 3}
@@ -31301,6 +31301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiManager: {fileID: 1570640566}
   _maxInteractionDistance: 1.5
+  range: 8
 --- !u!143 &1557809616
 CharacterController:
   m_ObjectHideFlags: 0
