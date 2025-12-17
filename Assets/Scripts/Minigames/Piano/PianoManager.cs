@@ -14,6 +14,8 @@ public class PianoManager : MonoBehaviour
     [SerializeField] private GameObject fruit;
     private bool completed = false;
     private EnableMouse mouse;
+    [SerializeField] private Button melodyButton;
+    [SerializeField] private AudioSource melody;
     private List<int> pianoTune = new List<int> {
     3, 2, 1, 2, 3, 3, 3,
     2, 2, 2,
@@ -28,6 +30,8 @@ public class PianoManager : MonoBehaviour
         currentKey = new List<int>(pianoTune);
 
         quit.onClick.AddListener(() => QuitMinigame());
+
+        melodyButton.onClick.AddListener(() => PlayMelody());
 
         mouse = FindFirstObjectByType<EnableMouse>().GetComponent<EnableMouse>();
     }
@@ -83,6 +87,11 @@ public class PianoManager : MonoBehaviour
     {
         gameObject.SetActive(false);
         mouse.ChangeMouse(true, false);
+    }
+
+    void PlayMelody()
+    {
+        melody.Play();
     }
 
     public void ClickButton(int num)
