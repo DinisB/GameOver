@@ -55,6 +55,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitButton()
     {
-        Application.Quit();
+        Time.timeScale = 1f;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Bye");
     }
 }
