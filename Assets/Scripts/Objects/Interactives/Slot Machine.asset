@@ -19,5 +19,6 @@ MonoBehaviour:
   requirements:
   - {fileID: 11400000, guid: e948fc0044897554a8564d596f2019c5, type: 2}
   - {fileID: 11400000, guid: adcae9df50672db4e9e176cc1c75f9db, type: 2}
-  requirementsMessage: Needs Lever and Fuse
-  interactionMessages: []
+  requirementsMessage: Needs Lever and Blue Fuse
+  interactionMessages:
+  - Play slots

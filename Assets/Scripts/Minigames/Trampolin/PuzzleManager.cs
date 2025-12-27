@@ -27,7 +27,6 @@ public class PuzzleManager : MonoBehaviour
 
     private int currentStep = 0;
     private bool puzzleCompleted = false;
-    [SerializeField] private GameObject lightZone;
     [SerializeField] private GameObject fruit;
 
     public void CheckTrampoline(Color trampolineColor)
@@ -53,7 +52,6 @@ public class PuzzleManager : MonoBehaviour
             {
                 puzzleCompleted = true;
                 audioSource.PlayOneShot(successSound, 1f);
-                lightZone.SetActive(true);
                 keyg.SetActive(true);
                 fruit.SetActive(true);
             }

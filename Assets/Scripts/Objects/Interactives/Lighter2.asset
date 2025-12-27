@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e18880bb7265dec419e109baebf1cb25, type: 3}
-  m_Name: Piano
+  m_Name: Lighter2
   m_EditorClassIdentifier: 
-  type: 2
+  type: 1
   startsOn: 1
-  inventoryName: Piano
+  inventoryName: 
   inventoryIcon: {fileID: 0}
-  requirements: []
-  requirementsMessage: 
+  requirements:
+  - {fileID: 11400000, guid: 71fdd1222edd69e4f81262ae87217122, type: 2}
+  requirementsMessage: Needs yellow fuse
   interactionMessages:
-  - Play piano
+  - Turn on lights
