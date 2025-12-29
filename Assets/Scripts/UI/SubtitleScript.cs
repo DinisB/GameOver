@@ -5,24 +5,35 @@ using System.Collections;
 public class SubtitleScript : MonoBehaviour
 {
     private TMP_Text subtitleText;
-    private string nothing = " ";
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Coroutine clearCoroutine;
+    private const string Nothing = "";
+    private float duration;
+
     void Start()
     {
         subtitleText = GetComponent<TMP_Text>();
-        subtitleText.text = nothing;
+        subtitleText.text = Nothing;
     }
 
-    // Update is called once per frame
-    public void SetText(float duration, string text)
+    public void SetAudio(AudioClip audioClip)
+    {
+        this.duration = audioClip.length;
+    }
+
+    public void SetText(string text)
     {
         subtitleText.text = text;
-        StartCoroutine(ClearTextAfterDuration(duration));
+
+        if (clearCoroutine != null)
+            StopCoroutine(clearCoroutine);
+
+        clearCoroutine = StartCoroutine(ClearTextAfterDuration(duration));
     }
 
     IEnumerator ClearTextAfterDuration(float duration)
     {
         yield return new WaitForSeconds(duration);
-        subtitleText.text = nothing;
+        subtitleText.text = Nothing;
+        clearCoroutine = null;
     }
 }
