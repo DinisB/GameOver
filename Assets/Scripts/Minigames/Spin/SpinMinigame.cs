@@ -15,10 +15,15 @@ public class SpinMinigame : MonoBehaviour
     private EnableMouse mouse;
     private bool isChanging = false;
     private bool completed = false;
+    [SerializeField] private Sprite[] icons;
+    private string[] current;
+    [SerializeField] private Image[] slotimages;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        current = new string[slots.Length];
+
         foreach (Button btn in slots)
         {
             btn.onClick.AddListener(() => SelectSlot(btn));
@@ -29,12 +34,6 @@ public class SpinMinigame : MonoBehaviour
         quit.onClick.AddListener(() => QuitMinigame());
 
         mouse = FindFirstObjectByType<EnableMouse>().GetComponent<EnableMouse>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
     void SpinSlot()
     {
@@ -48,14 +47,14 @@ public class SpinMinigame : MonoBehaviour
 
     IEnumerator ChangeSlot(Button btn)
     {
-        TMP_Text txt = btn.GetComponentInChildren<TMP_Text>();
         int counter = 0;
         isChanging = true;
-        string selected = null;
-        while (counter != 5)
-        {
 
-            List<PossibleSlots> list = new List<PossibleSlots>
+        int index = btn.transform.GetSiblingIndex();
+        string selected = null;
+        Image icon = slotimages[index];
+
+        List<PossibleSlots> list = new List<PossibleSlots>
     {
         PossibleSlots.Banana,
         PossibleSlots.Apple,
@@ -63,50 +62,58 @@ public class SpinMinigame : MonoBehaviour
         PossibleSlots.Cherry
     };
 
-            list.RemoveAll(s => s.ToString() == txt.text);
+        while (counter != 5)
+        {
+            list.RemoveAll(s => s.ToString() == current[index]);
 
             PossibleSlots randomSlot = list[Random.Range(0, list.Count)];
-            if (selected == null) selected = randomSlot.ToString();
-            txt.text = randomSlot.ToString();
+            if (selected == null)
+            {
+                selected = randomSlot.ToString();
+            }
+
+            icon.sprite = icons[(int)randomSlot];
             counter++;
             yield return new WaitForSeconds(.1f);
         }
-        txt.text = selected;
+
+        icon.sprite = icons[(int)System.Enum.Parse(typeof(PossibleSlots), selected)];
+        current[index] = selected;
+
         isChanging = false;
         StartCoroutine(CheckSlots());
     }
 
+
     IEnumerator CheckSlots()
     {
         int count = 0;
-        string[] code = File.ReadAllLines(Application.streamingAssetsPath + '/' + "code.txt");
-        Debug.Log(code);
-        int num = 0;
-        foreach (Button btn in slots)
+        string[] code = File.ReadAllLines(Application.streamingAssetsPath + "/code.txt");
+
+        for (int i = 0; i < slots.Length; i++)
         {
-            string slotText = btn.GetComponentInChildren<TMP_Text>().text;
-            if (slotText == code[num])
+            if (current[i] == code[i])
             {
                 count++;
             }
-            num++;
         }
 
         if (count == 3 && !completed)
         {
-            Debug.Log("Sucess");
             completed = true;
+
             foreach (Button btn in slots)
             {
                 btn.image.color = Color.green;
             }
+
             yield return new WaitForSeconds(1);
             key.SetActive(true);
             gameObject.SetActive(false);
             mouse.ChangeMouse(true, false);
         }
-        else { Debug.Log("Wrong"); }
     }
+
 
     void QuitMinigame()
     {
