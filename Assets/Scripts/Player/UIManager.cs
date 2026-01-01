@@ -14,12 +14,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Color      _selectedSlotColor;
     
     private TextMeshProUGUI _interactionMessage;
+    [SerializeField]private TextMeshProUGUI coins;
+    private PlayerInventory playerInventory;
     private Image[]         _inventorySlots;
     private Image[]         _inventoryIcons;
     private int             _selectedSlotIndex;
 
     void Start()
     {
+        playerInventory = FindFirstObjectByType<PlayerInventory>().GetComponent<PlayerInventory>();
         _interactionMessage = GetComponentInChildren<TextMeshProUGUI>();
         _inventorySlots = _inventorySlotsContainer.GetComponentsInChildren<Image>();
         _inventoryIcons = _inventoryIconsContainer.GetComponentsInChildren<Image>();
@@ -29,6 +32,11 @@ public class UIManager : MonoBehaviour
         HideInteractionPanel();
         HideInventoryIcons();
         ResetInventorySlots();
+    }
+
+    public void RefreshCoins()
+    {
+        coins.text = playerInventory.GetCoins().ToString();
     }
 
     private void HideCursor()

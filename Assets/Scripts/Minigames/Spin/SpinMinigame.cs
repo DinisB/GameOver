@@ -10,7 +10,6 @@ public class SpinMinigame : MonoBehaviour
     [SerializeField] private Button[] slots;
     [SerializeField] private Button spin;
     [SerializeField] private Button quit;
-    [SerializeField] private GameObject key;
     private Button currentSlot;
     private EnableMouse mouse;
     private bool isChanging = false;
@@ -18,10 +17,12 @@ public class SpinMinigame : MonoBehaviour
     [SerializeField] private Sprite[] icons;
     private string[] current;
     [SerializeField] private Image[] slotimages;
+    private PlayerInventory playerInventory;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerInventory = FindFirstObjectByType<PlayerInventory>().GetComponent<PlayerInventory>();
         current = new string[slots.Length];
 
         foreach (Button btn in slots)
@@ -108,7 +109,8 @@ public class SpinMinigame : MonoBehaviour
             }
 
             yield return new WaitForSeconds(1);
-            key.SetActive(true);
+            playerInventory.AddCoin();
+            FindFirstObjectByType<UIManager>().RefreshCoins();
             gameObject.SetActive(false);
             mouse.ChangeMouse(true, false);
         }

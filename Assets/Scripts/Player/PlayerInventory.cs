@@ -8,9 +8,11 @@ public class PlayerInventory : MonoBehaviour
     private PlayerInteraction   _playerInteraction;
     private List<Interactive>   _inventory;
     private int                 _selectedSlotIndex;
+    private int coins;
 
     void Start()
     {
+        coins = 0;
         _playerInteraction  = GetComponent<PlayerInteraction>();
         _inventory          = new List<Interactive>();
         _selectedSlotIndex  = -1;
@@ -24,6 +26,22 @@ public class PlayerInventory : MonoBehaviour
 
         if (_selectedSlotIndex == -1)
             SelectInventorySlot(0);
+    }
+
+    public void AddCoin()
+    {
+        coins++;
+    }
+    
+    public int GetCoins()
+    {
+        return coins;
+    }
+
+    public void SpendCoin()
+    {
+        if (coins > 0)
+            coins--;
     }
 
     public void Remove(Interactive item)
