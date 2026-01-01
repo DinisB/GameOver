@@ -24,6 +24,16 @@ public class EnableMouse : MonoBehaviour
         mouse = y;
     }
 
+    public void DisableMouse()
+    {
+        ChangeMouse(true, false);
+    }
+
+    public void EnableMouseVoid()
+    {
+        ChangeMouse(false, true);
+    }
+
     // Update is called once per frame
     void Update()
     {
