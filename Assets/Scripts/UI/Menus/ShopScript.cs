@@ -20,6 +20,7 @@ public class ShopScript : MonoBehaviour
             objectToActivate.SetActive(true);
             gameObject.SetActive(false);
             shopUI.SetActive(false);
+            FindFirstObjectByType<EnableMouse>().DisableMouse();
         }
     }
 }
