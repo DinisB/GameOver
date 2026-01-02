@@ -25,50 +25,72 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private List<Color> baseColors = new List<Color>();
     [SerializeField] private List<Trampolines> trampolines = new List<Trampolines>();
 
+    // Sequencia do jogador
+    private List<Color> playerSequence = new List<Color>();
+    [SerializeField] private int maxJumps = 6;
+
     private int currentStep = 0;
     private bool puzzleCompleted = false;
 
     public void CheckTrampoline(Color trampolineColor)
     {
         if (puzzleCompleted) return;
-        if (currentStep >= correctOrder.Count) return;
+        if (playerSequence.Count >= maxJumps) return;
 
-        bool correct = trampolineColor == correctOrder[currentStep];
+        // Guardar a escolha do jogador
+        playerSequence.Add(trampolineColor);
 
-        emissiveRenderer.material = correct ? emissiveGreen : emissiveRed;
-
-
-        if (correct)
+        // Som diferente por salto
+        int index = playerSequence.Count - 1;
+        if (index < correctStepSounds.Count)
         {
-            if (currentStep < correctStepSounds.Count)
-            {
-                audioSource.PlayOneShot(correctStepSounds[currentStep]);
-            }
-
-            currentStep++;
-
-            if (currentStep >= correctOrder.Count)
-            {
-                puzzleCompleted = true;
-                audioSource.PlayOneShot(successSound, 1f);
-                keyg.SetActive(true);
-                FindFirstObjectByType<UIManager>().RefreshCoins();
-            }
+            audioSource.PlayOneShot(correctStepSounds[index]);
         }
-        else
+
+        // Se já fez os 6 saltos → avaliar
+        if (playerSequence.Count == maxJumps)
         {
-            currentStep = 0;
-            audioSource.PlayOneShot(wrongSound);
-            ShuffleTrampolineOrder();
+            EvaluateSequence();
         }
 
     }
+
+    private void EvaluateSequence()
+    {
+        bool correct = true;
+
+        for (int i = 0; i < correctOrder.Count; i++)
+        {
+            if (playerSequence[i] != correctOrder[i])
+            {
+                correct = false;
+                break;
+            }
+        }
+
+        emissiveRenderer.material = correct ? emissiveGreen : emissiveRed;
+
+        if (correct)
+        {
+            puzzleCompleted = true;
+            audioSource.PlayOneShot(successSound, 1f);
+            keyg.SetActive(true);
+            FindFirstObjectByType<UIManager>().RefreshCoins();
+        }
+        else
+        {
+            audioSource.PlayOneShot(wrongSound);
+            ResetPuzzle();
+        }
+    }
+
+
     private void ShuffleTrampolineOrder()
     {
         // Copiar as 4 cores base
         List<Color> shuffled = new List<Color>(baseColors);
 
-        // Baralhar (Fisher�Yates)
+        // Baralhar 
         for (int i = 0; i < shuffled.Count; i++)
         {
             int randomIndex = Random.Range(i, shuffled.Count);
@@ -80,6 +102,11 @@ public class PuzzleManager : MonoBehaviour
         {
             trampolines[i].SetColor(shuffled[i]);
         }
+    }
+    private void ResetPuzzle()
+    {
+        playerSequence.Clear();
+        ShuffleTrampolineOrder();
     }
 
 }
