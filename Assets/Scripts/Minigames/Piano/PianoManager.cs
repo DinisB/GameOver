@@ -13,7 +13,7 @@ public class PianoManager : MonoBehaviour
     private EnableMouse mouse;
     [SerializeField] private Button melodyButton;
     [SerializeField] private AudioSource melody;
-    private PlayerInventory playerInventory;
+    [SerializeField] private GameObject keyg;
     private List<int> pianoTune = new List<int> {
     3, 2, 1, 2, 3, 3, 3,
     2, 2, 2,
@@ -25,8 +25,6 @@ public class PianoManager : MonoBehaviour
 
     void Start()
     {
-        playerInventory = FindFirstObjectByType<PlayerInventory>().GetComponent<PlayerInventory>();
-
         currentKey = new List<int>(pianoTune);
 
         quit.onClick.AddListener(() => QuitMinigame());
@@ -60,7 +58,7 @@ public class PianoManager : MonoBehaviour
                             Debug.Log("Ganhas-te!");
                             if (completed)
                             {
-                                playerInventory.AddCoin();
+                                keyg.SetActive(true);
                                 FindFirstObjectByType<UIManager>().RefreshCoins();
                             }
                             QuitMinigame();
@@ -115,7 +113,7 @@ public class PianoManager : MonoBehaviour
                         {
                             completed = true;
                             Debug.Log("Ganhas-te!");
-                            playerInventory.AddCoin();
+                            keyg.SetActive(true);
                             QuitMinigame();
                         }
                     }

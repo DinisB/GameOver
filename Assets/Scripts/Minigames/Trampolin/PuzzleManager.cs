@@ -27,12 +27,6 @@ public class PuzzleManager : MonoBehaviour
 
     private int currentStep = 0;
     private bool puzzleCompleted = false;
-    private PlayerInventory playerInventory;
-
-    void Start()
-    {
-        playerInventory = FindFirstObjectByType<PlayerInventory>().GetComponent<PlayerInventory>();
-    }
 
     public void CheckTrampoline(Color trampolineColor)
     {
@@ -57,7 +51,7 @@ public class PuzzleManager : MonoBehaviour
             {
                 puzzleCompleted = true;
                 audioSource.PlayOneShot(successSound, 1f);
-                playerInventory.AddCoin();
+                keyg.SetActive(true);
                 FindFirstObjectByType<UIManager>().RefreshCoins();
             }
         }
