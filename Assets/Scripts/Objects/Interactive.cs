@@ -6,30 +6,30 @@ public class Interactive : MonoBehaviour
 {
     [SerializeField] private InteractiveData _interactiveData;
 
-    private InteractionManager  _interactionManager;
-    private PlayerInventory     _playerInventory;
-    private List<Interactive>   _requirements;
-    private List<Interactive>   _dependents;
-    private Animator            _animator;
-    private bool                _requirementsMet;
-    private int                 _interactionCount;
+    private InteractionManager _interactionManager;
+    private PlayerInventory _playerInventory;
+    private List<Interactive> _requirements;
+    private List<Interactive> _dependents;
+    private Animator _animator;
+    private bool _requirementsMet;
+    private int _interactionCount;
 
-    public bool             isOn;
-    public InteractiveData  interactiveData => _interactiveData;
-    public string           inventoryName   => _interactiveData.inventoryName;
-    public Sprite           inventoryIcon   => _interactiveData.inventoryIcon;
+    public bool isOn;
+    public InteractiveData interactiveData => _interactiveData;
+    public string inventoryName => _interactiveData.inventoryName;
+    public Sprite inventoryIcon => _interactiveData.inventoryIcon;
     public UnityEvent onInteractInstance;
 
     void Awake()
     {
         _interactionManager = InteractionManager.instance;
-        _playerInventory    = _interactionManager.playerInventory;
-        _requirements       = new List<Interactive>();
-        _dependents         = new List<Interactive>();
-        _animator           = GetComponent<Animator>();
-        _requirementsMet    = _interactiveData.requirements.Length == 0;
-        _interactionCount   = 0;
-        isOn                = _interactiveData.startsOn;
+        _playerInventory = _interactionManager.playerInventory;
+        _requirements = new List<Interactive>();
+        _dependents = new List<Interactive>();
+        _animator = GetComponent<Animator>();
+        _requirementsMet = _interactiveData.requirements.Length == 0;
+        _interactionCount = 0;
+        isOn = _interactiveData.startsOn;
 
         _interactionManager?.RegisterInteractive(this);
     }
@@ -134,12 +134,12 @@ public class Interactive : MonoBehaviour
     {
         foreach (Interactive requirement in _requirements)
         {
-            if (!requirement._requirementsMet || 
+            if (!requirement._requirementsMet ||
                (!requirement.IsType(InteractiveData.Type.Indirect) && requirement._interactionCount == 0))
-               {
-                    _requirementsMet = false;
-                    return;
-               }
+            {
+                _requirementsMet = false;
+                return;
+            }
         }
 
         _requirementsMet = true;
@@ -154,15 +154,20 @@ public class Interactive : MonoBehaviour
             if (dependent.IsType(InteractiveData.Type.Indirect) && dependent._requirementsMet)
                 dependent.InteractSelf(false);
     }
- 
+
     private void PlayAnimation(string animation)
     {
-        if (_animator != null)
-        {
-            gameObject.SetActive(true);
-            _animator.SetTrigger(animation);
-        }
+        if (_animator == null)
+            return;
+
+        if (string.IsNullOrEmpty(animation))
+            return; // intentionally no animation
+
+        gameObject.SetActive(true);
+        _animator.SetTrigger(animation);
     }
+
+
 
     private void UseRequirementFromInventory()
     {

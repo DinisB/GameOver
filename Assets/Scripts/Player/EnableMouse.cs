@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class EnableMouse : MonoBehaviour
 {
@@ -31,6 +32,18 @@ public class EnableMouse : MonoBehaviour
 
     public void EnableMouseVoid()
     {
+        ChangeMouse(false, true);
+    }
+
+    public void TemporaryDisableMouse(float delay)
+    {
+        StartCoroutine(TemporaryMouse(delay));
+    }
+
+    private IEnumerator TemporaryMouse(float delay)
+    {
+        ChangeMouse(true, false);
+        yield return new WaitForSeconds(delay);
         ChangeMouse(false, true);
     }
 
