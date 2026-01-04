@@ -111,6 +111,7 @@ public class SpinMinigame : MonoBehaviour
             yield return new WaitForSeconds(1);
             playerInventory.AddCoin();
             FindFirstObjectByType<UIManager>().RefreshCoins();
+            gameObject.SetActive(false);
             mouse.ChangeMouse(true, false);
         }
     }
