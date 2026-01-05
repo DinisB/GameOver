@@ -3,7 +3,27 @@ guid: 94fc1502c1cd7cf48b2abe6c802881c4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: openPBRSurface28
+    second: {fileID: 2100000, guid: 659e8bc47d14a1c41b2f533256f8ea3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: openPBRSurface30
+    second: {fileID: 2100000, guid: 7f3dc3cba47d5ff479f80273c05e1d5b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: openPBRSurface31
+    second: {fileID: 2100000, guid: a20d045a5417b3e419903299a363be1c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: openPBRSurface32
+    second: {fileID: 2100000, guid: be33468ace145124fae23e2adcfc1ffd, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -18,42 +18,42 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Piano de Brinquedo_openPBRSurface43_BaseColor
-    second: {fileID: 2800000, guid: 7285b698582aaba42a55b5afe0db502b, type: 3}
+    second: {fileID: 2800000, guid: bd13fdffb16a4df46a2d7b72b6d968da, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Piano de Brinquedo_openPBRSurface43_Metalness
-    second: {fileID: 2800000, guid: 0f269e3f9adc2aa40b0cc0c81c29b9df, type: 3}
+    second: {fileID: 2800000, guid: f9cb80eaaaf331247b160806a2434c3a, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Piano de Brinquedo_openPBRSurface43_Normal
-    second: {fileID: 2800000, guid: 12fb2d616e7d12048a5eb075fc31a483, type: 3}
+    second: {fileID: 2800000, guid: f6f5de71b56303f4c9935016c7881028, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Piano de Brinquedo_openPBRSurface43_Roughness
-    second: {fileID: 2800000, guid: a187c248e90b92e44af019dff4c1be69, type: 3}
+    second: {fileID: 2800000, guid: 30a1d26f4a787124da9a73a479c2e99c, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Piano de Brinquedo_openPBRSurface44_BaseColor
-    second: {fileID: 2800000, guid: 159e023ce6ef98d448b835143b353ec9, type: 3}
+    second: {fileID: 2800000, guid: 6856cea3dd0163d4bafd1bce92dad278, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Piano de Brinquedo_openPBRSurface44_Metalness
-    second: {fileID: 2800000, guid: 16c24b38a9c30584f81d31aba5737065, type: 3}
+    second: {fileID: 2800000, guid: 7a46c16c96df43d49803ed944d1c4784, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Piano de Brinquedo_openPBRSurface44_Normal
-    second: {fileID: 2800000, guid: b5a6c8f843fd6404f9d07139cf6215e6, type: 3}
+    second: {fileID: 2800000, guid: 4cc83588417c8bc47b91f7cfb820391c, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Piano de Brinquedo_openPBRSurface44_Roughness
-    second: {fileID: 2800000, guid: eeefdf034f2ed644db15712d08bbe1e0, type: 3}
+    second: {fileID: 2800000, guid: ca2c5ab0624bf424394c519d3e16efbf, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -85,7 +85,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
