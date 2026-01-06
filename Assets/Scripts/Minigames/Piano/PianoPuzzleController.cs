@@ -15,6 +15,10 @@ public class PianoPuzzleController : MonoBehaviour
         Completo
     }
 
+    // SIMON SAYS (parte 2)
+    private List<int> currentSequence = new List<int>();
+    private int playerIndexSimon;
+
     // Estado atual do puzzle
     public PuzzleState currentState = PuzzleState.Inativo;
 
@@ -32,11 +36,10 @@ public class PianoPuzzleController : MonoBehaviour
 
     // Sequencias do puzzle
     public List<int> part1Sequence = new List<int>() { 0, 2, 1, 3 };
-    public List<int> fullSequence = new List<int>() { 0, 2, 1, 3, 4 };
-
+   
     // Variaveis para controlar o input do jogador
     private int playerIndex;
-    private int currentLength;
+    
 
     private bool inputAtivo;
 
@@ -70,6 +73,47 @@ public class PianoPuzzleController : MonoBehaviour
             }
         }
     }
+
+    void AddNewSimonStep()
+    {
+        int randomKey = Random.Range(0, keys.Length);
+        currentSequence.Add(randomKey);
+    }
+
+    IEnumerator PlaySimonSequence()
+    {
+        inputAtivo = false;
+
+        yield return new WaitForSeconds(0.5f);
+
+        for (int i = 0; i < currentSequence.Count; i++)
+        {
+            keys[currentSequence[i]].Play();
+            yield return new WaitForSeconds(0.8f);
+        }
+
+        playerIndexSimon = 0;
+        inputAtivo = true;
+    }
+
+    IEnumerator NextSimonRound()
+    {
+        inputAtivo = false;
+        yield return new WaitForSeconds(0.6f);
+
+        AddNewSimonStep();
+
+        if (currentSequence.Count >= 5)
+        {
+            CompletePuzzle();
+        }
+        else
+        {
+            StartCoroutine(PlaySimonSequence());
+        }
+    }
+
+
 
     public void StartPuzzle()
 {
@@ -160,45 +204,45 @@ public class PianoPuzzleController : MonoBehaviour
 
     //public void InsertKey5()
     //{
-        //ey5Object.SetActive(true);
-       //SaveProgress();
+    //ey5Object.SetActive(true);
+    //SaveProgress();
 
-       // currentState = PuzzleState.SimonParte2;
-       //StartPart2();
-   // }
+    // currentState = PuzzleState.SimonParte2;
+    //StartPart2();
+    // }
 
     //Parte dois do puzzle
 
     void StartPart2()
     {
         currentState = PuzzleState.SimonParte2;
-        inputAtivo = true;
-        playerIndex = 0;
-        currentLength = fullSequence.Count;
+        inputAtivo = false;
+
+        currentSequence.Clear();
+        playerIndexSimon = 0;
+
+        AddNewSimonStep();
+        StartCoroutine(PlaySimonSequence());
     }
 
     void HandlePart2(int keyID)
     {
-        int expectedKey = (currentLength == 1) ? 4 : fullSequence[playerIndex];
-
-        if (keyID == expectedKey)
+        if (keyID == currentSequence[playerIndexSimon])
         {
-            playerIndex++;
+            playerIndexSimon++;
 
-            if (playerIndex >= currentLength)
+            if (playerIndexSimon >= currentSequence.Count)
             {
-                currentLength--;
-                playerIndex = 0;
-
-                if (currentLength <= 0)
-                    CompletePuzzle();
+                StartCoroutine(NextSimonRound());
             }
         }
         else
         {
-            RestartPart2();
+            playerIndexSimon = 0;
+            StartCoroutine(PlaySimonSequence());
         }
     }
+
 
     void RestartPart2()
     {

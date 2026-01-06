@@ -11442,15 +11442,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6660a1f9586eab4f9dce8e904a19160, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.8226
+      value: 2.3773
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6660a1f9586eab4f9dce8e904a19160, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1423
+      value: 0.0859
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6660a1f9586eab4f9dce8e904a19160, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.96
+      value: 1.038
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6660a1f9586eab4f9dce8e904a19160, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27739,7 +27739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactiveData: {fileID: 11400000, guid: e249f9a645f6b39419a4bb2e1da90c22, type: 2}
-  isOn: 1
+  isOn: 0
   onInteractInstance:
     m_PersistentCalls:
       m_Calls:
@@ -56402,7 +56402,6 @@ MonoBehaviour:
   key5Object: {fileID: 1913741474}
   areaKeyObject: {fileID: 8362853903593592953}
   part1Sequence: 0000000002000000010000000300000002000000
-  fullSequence: 0300000001000000020000000000000004000000
   cameraController: {fileID: 2097223862}
   mouseController: {fileID: 1557809606}
 --- !u!114 &2097223864
