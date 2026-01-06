@@ -13,14 +13,26 @@ public class PlayerInteraction : MonoBehaviour
     private RectTransform rect;
     private EnableMouse mouse;
     [SerializeField] private float range = 8f;
+    private bool selectedFuse;
 
     void Start()
     {
+        selectedFuse = false;
         rect = FindAnyObjectByType<Canvas>().GetComponentInChildren<RectTransform>();
         mouse = FindAnyObjectByType<EnableMouse>().GetComponent<EnableMouse>();
         _cameraTransform = GetComponentInChildren<Camera>().transform;
         _currentInteractive = null;
         _refreshCurrentInteractive = false;
+    }
+
+    public void TransportFuses()
+    {
+        if (!selectedFuse)
+        {
+            SetPosition setPosition = FindAnyObjectByType<SetPosition>().GetComponent<SetPosition>();
+            setPosition.GetFuses();
+            selectedFuse = true;
+        }
     }
 
     void Update()
@@ -32,10 +44,22 @@ public class PlayerInteraction : MonoBehaviour
         CheckForPlayerInteraction();
     }
 
+    public bool SetSelectedFuse(bool selected)
+    {
+        selectedFuse = selected;
+        return selectedFuse;
+    }
+
+    public bool GetSelectedFuse()
+    {
+        return selectedFuse;
+    }
+
+
     private void UpdateCurrentInteractive()
     {
         RaycastHit hit;
-        
+
         if (Physics.Raycast(raymouse, out hit, range))
             CheckObjectForInteraction(hit.collider);
         else if (_currentInteractive != null)

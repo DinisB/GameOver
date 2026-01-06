@@ -106,6 +106,7 @@ public class Interactive : MonoBehaviour
         }
 
         _playerInventory.Add(this);
+        onInteractInstance?.Invoke();
         gameObject.SetActive(false);
     }
 

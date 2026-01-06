@@ -48,13 +48,13 @@ public class PianoPuzzleController : MonoBehaviour
         // Detecta clique do rato
         if (Input.GetMouseButtonDown(0))
         {
-            // Cria um raycast a partir da posíção do rato
+            // Cria um raycast a partir da posï¿½ï¿½ï¿½o do rato
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             // Verifica se o raycast colidiu com alguma tecla
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 PianoKey key = hit.collider.GetComponent<PianoKey>();
-                // Se houver uma colisão com uma tecla é processado o input
+                // Se houver uma colisï¿½o com uma tecla ï¿½ processado o input
                 if (key != null)
                     HandleKeyPress(key.keyID);
             }
@@ -111,11 +111,11 @@ public class PianoPuzzleController : MonoBehaviour
         RevealKey5();
     }
 
-    // Peça que falta
+    // Peï¿½a que falta
     void RevealKey5()
     {
-        // Aqui disparas a animação das meshes
-        Debug.Log("Revelar peça 5");
+        // Aqui disparas a animaï¿½ï¿½o das meshes
+        Debug.Log("Revelar peï¿½a 5");
     }
 
 
@@ -171,7 +171,7 @@ public class PianoPuzzleController : MonoBehaviour
     void CompletePuzzle()
     {
         currentState = PuzzleState.Completo;
-        inputAtivo = false;
+        ExitPiano();
         Debug.Log("Puzzle Completo!");
     }
 

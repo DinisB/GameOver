@@ -112,7 +112,7 @@ public class SpinMinigame : MonoBehaviour
             playerInventory.AddCoin();
             FindFirstObjectByType<UIManager>().RefreshCoins();
             gameObject.SetActive(false);
-            mouse.ChangeMouse(true, false);
+            mouse.DisableMouse();
         }
     }
 
@@ -120,7 +120,7 @@ public class SpinMinigame : MonoBehaviour
     void QuitMinigame()
     {
         gameObject.SetActive(false);
-        mouse.ChangeMouse(true, false);
+        mouse.DisableMouse();
     }
 
     public enum PossibleSlots
