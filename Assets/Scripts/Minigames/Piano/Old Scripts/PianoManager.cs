@@ -1,0 +1,145 @@
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+
+public class PianoManager : MonoBehaviour
+{
+    [SerializeField] private RawImage[] pianoKeys;
+    [SerializeField] private AudioClip[] pianoSounds;
+    [SerializeField] private AudioSource pianoSource;
+    [SerializeField] private Button quit;
+    private bool completed = false;
+    private EnableMouse mouse;
+    [SerializeField] private Button melodyButton;
+    [SerializeField] private AudioSource melody;
+    [SerializeField] private GameObject keyg;
+    private List<int> pianoTune = new List<int> {
+    3, 2, 1, 2, 3, 3, 3,
+    2, 2, 2,
+    3, 4, 4,
+    3, 2, 1, 2, 3, 3, 3
+};
+
+    private List<int> currentKey;
+
+    void Start()
+    {
+        currentKey = new List<int>(pianoTune);
+
+        quit.onClick.AddListener(() => QuitMinigame());
+
+        melodyButton.onClick.AddListener(() => PlayMelody());
+
+        mouse = FindFirstObjectByType<EnableMouse>().GetComponent<EnableMouse>();
+    }
+
+
+    void Update()
+    {
+        for (int i = 1; i <= 4; i++)
+        {
+            KeyCode key = KeyCode.Alpha0 + i;
+
+            if (Input.GetKeyDown(key))
+            {
+                if (i - 1 < pianoKeys.Length)
+                {
+                    pianoSource.PlayOneShot(pianoSounds[i - 1]);
+
+                    if (currentKey.Count > 0 && i == currentKey[0])
+                    {
+                        currentKey.RemoveAt(0);
+                        Debug.Log("Certo!");
+                        pianoKeys[i - 1].color = Color.green;
+                        if (currentKey.Count == 0 && !completed)
+                        {
+                            completed = true;
+                            Debug.Log("Ganhas-te!");
+                            if (completed)
+                            {
+                                keyg.SetActive(true);
+                                FindFirstObjectByType<UIManager>().RefreshCoins();
+                            }
+                            QuitMinigame();
+                        }
+                    }
+                    else
+                    {
+                        currentKey = new List<int>(pianoTune);
+                        Debug.Log("Errado!");
+                        pianoKeys[i - 1].color = Color.red;
+                    }
+                }
+            }
+
+            if (Input.GetKeyUp(key))
+            {
+                if (i - 1 < pianoKeys.Length)
+                {
+                    pianoKeys[i - 1].color = Color.white;
+                }
+            }
+        }
+    }
+
+    void QuitMinigame()
+    {
+        gameObject.SetActive(false);
+        mouse.ChangeMouse(true, false);
+    }
+
+    void PlayMelody()
+    {
+        melody.Play();
+    }
+
+    public void ClickButton(int num)
+    {
+        for (int i = 1; i <= 4; i++)
+        {
+            if (num == i)
+            {
+                if (i - 1 < pianoKeys.Length)
+                {
+                    pianoSource.PlayOneShot(pianoSounds[i - 1]);
+
+                    if (currentKey.Count > 0 && i == currentKey[0])
+                    {
+                        currentKey.RemoveAt(0);
+                        Debug.Log("Certo!");
+                        pianoKeys[i - 1].color = Color.green;
+                        if (currentKey.Count == 0 && !completed)
+                        {
+                            completed = true;
+                            Debug.Log("Ganhas-te!");
+                            keyg.SetActive(true);
+                            QuitMinigame();
+                        }
+                    }
+                    else
+                    {
+                        currentKey = new List<int>(pianoTune);
+                        Debug.Log("Errado!");
+                        pianoKeys[i - 1].color = Color.red;
+                    }
+                }
+            }
+        }
+
+        StartCoroutine(ResetSlots());
+    }
+
+    IEnumerator ResetSlots()
+    {
+        for (int i = 1; i <= 14; i++)
+        {
+            yield return null;
+        }
+        for (int i = 1; i <= 4; i++)
+        {
+            pianoKeys[i - 1].color = Color.white;
+        }
+
+    }
+}

@@ -21,12 +21,16 @@ public class Controls : MonoBehaviour
     private GameObject cam;
     private bool canMove = true;
     private Vector2 input;
+    private Transform cameraTransform;
 
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        cam = transform.GetChild(0).gameObject;
+        //cam = transform.GetChild(0).gameObject;
+        cameraTransform = Camera.main.transform;
+
+
     }
 
     private void Awake()
@@ -56,12 +60,12 @@ public class Controls : MonoBehaviour
         groundedPlayer = controller.isGrounded;
 
         input = canMove ? moveAction.action.ReadValue<Vector2>() : Vector2.zero;
-        Vector3 move = cam.transform.forward * input.y + cam.transform.right * input.x;
+        Vector3 move = cameraTransform.forward * input.y + cameraTransform.right * input.x;
         move.y = 0;
         move = Vector3.ClampMagnitude(move, 1f);
 
-        if (move != Vector3.zero)
-            transform.forward = move;
+        //if (move != Vector3.zero)
+            //transform.forward = move;
 
         if (groundedPlayer) playerVelocity.y = -0.1f;
 
@@ -85,6 +89,7 @@ public class Controls : MonoBehaviour
         // Movimento final
         Vector3 finalMove = horizontalMove + playerVelocity.y * Vector3.up;
         controller.Move(finalMove * Time.deltaTime);
+
     }
     public bool IsGrounded()
     {
