@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   startsOn: 1
   inventoryName: Fuse
-  inventoryIcon: {fileID: 21300000, guid: 64f792eca917a024b97a02ec765f49df, type: 3}
+  inventoryIcon: {fileID: 21300000, guid: ad676db980b3b56478992cbee61dd060, type: 3}
   requirements: []
   requirementsMessage: 
   interactionMessages:
