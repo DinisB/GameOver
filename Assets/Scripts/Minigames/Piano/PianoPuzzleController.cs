@@ -14,6 +14,9 @@ public class PianoPuzzleController : MonoBehaviour
         SimonParte2,
         Completo
     }
+    // SIMON SAYS (parte 1)
+    private List<int> simonSequencePart1 = new List<int>();
+    private int simonIndexPart1;
 
     // SIMON SAYS (parte 2)
     private List<int> currentSequence = new List<int>();
@@ -35,7 +38,7 @@ public class PianoPuzzleController : MonoBehaviour
     [SerializeField] private Interactive areaKeyObject;
 
     // Sequencias do puzzle
-    public List<int> part1Sequence = new List<int>() { 0, 2, 1, 3 };
+    //public List<int> part1Sequence = new List<int>() { 0, 2, 1, 3 };
    
     // Variaveis para controlar o input do jogador
     private int playerIndex;
@@ -158,22 +161,62 @@ public class PianoPuzzleController : MonoBehaviour
     void StartPart1()
     {
         currentState = PuzzleState.SimonParte1;
-        playerIndex = 0;
+        inputAtivo = false;
+
+        simonSequencePart1.Clear();
+        simonIndexPart1 = 0;
+
+        AddSimonStepPart1();
+        StartCoroutine(PlaySimonPart1());
     }
+    void AddSimonStepPart1()
+    {
+        int randomKey = Random.Range(0, 4); // só 4 teclas (sem a 5)
+        simonSequencePart1.Add(randomKey);
+    }
+
+    IEnumerator PlaySimonPart1()
+    {
+        inputAtivo = false;
+        yield return new WaitForSeconds(0.5f);
+
+        for (int i = 0; i < simonSequencePart1.Count; i++)
+        {
+            keys[simonSequencePart1[i]].Play();
+            yield return new WaitForSeconds(0.8f);
+        }
+
+        simonIndexPart1 = 0;
+        inputAtivo = true;
+    }
+
 
     void HandlePart1(int keyID)
     {
-        if (keyID == part1Sequence[playerIndex])
+        if (keyID == simonSequencePart1[simonIndexPart1])
         {
-            playerIndex++;
-            if (playerIndex >= part1Sequence.Count)
-                StartCoroutine(CompletePart1());
+            simonIndexPart1++;
+
+            if (simonIndexPart1 >= simonSequencePart1.Count)
+            {
+                if (simonSequencePart1.Count >= 4)
+                {
+                    StartCoroutine(CompletePart1());
+                }
+                else
+                {
+                    AddSimonStepPart1();
+                    StartCoroutine(PlaySimonPart1());
+                }
+            }
         }
         else
         {
-            playerIndex = 0;
+            simonIndexPart1 = 0;
+            StartCoroutine(PlaySimonPart1());
         }
     }
+
 
     IEnumerator CompletePart1()
     {
