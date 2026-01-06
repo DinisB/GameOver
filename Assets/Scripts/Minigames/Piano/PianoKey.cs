@@ -1,22 +1,29 @@
 using UnityEngine;
+using System.Collections;
 
 public class PianoKey : MonoBehaviour
 {
     public int keyID; // 0 a 4
-    public Light keyLight; // Luz que acende quando a tecla é pressionada
-    public AudioSource audioSource; // Serve para tocar o som da tecla
+
+    [Header("Visual")]
+    public MeshRenderer meshRenderer;
+    public Material normalMaterial; // non-emissive
+    public Material emissiveMaterial; // emissive
+    public float glowTime = 0.25f; //Tempo de brilho ao ser pressionado
+
+    [Header("Audio")]
+    public AudioSource audioSource;
 
     public void Play()
     {
         audioSource.Play();
-        StartCoroutine(LightFlash());
+        StartCoroutine(Glow());
     }
-
-    private System.Collections.IEnumerator LightFlash()
+    // Faz o piano key brilhar por um tempo definido
+    private IEnumerator Glow()
     {
-        // Acende a luz por 0.25 segundos
-        keyLight.enabled = true;
-        yield return new WaitForSeconds(0.25f);
-        keyLight.enabled = false;
+        meshRenderer.material = emissiveMaterial;
+        yield return new WaitForSeconds(glowTime);
+        meshRenderer.material = normalMaterial;
     }
 }

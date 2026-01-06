@@ -18,9 +18,16 @@ public class PianoPuzzleController : MonoBehaviour
     // Estado atual do puzzle
     public PuzzleState currentState = PuzzleState.Inativo;
 
+    // Espelhos e peça 5 interagivel
+    [SerializeField] private GameObject mirrorGroup;
+    [SerializeField] private Interactive key5Pickup;
+
     // Referencias as teclas do piano
     public PianoKey[] keys; // tamanho 5
     public GameObject key5Object;
+
+    // Chave da area da musica
+    [SerializeField] private Interactive areaKeyObject;
 
     // Sequencias do puzzle
     public List<int> part1Sequence = new List<int>() { 0, 2, 1, 3 };
@@ -67,6 +74,8 @@ public class PianoPuzzleController : MonoBehaviour
 
         if (currentState == PuzzleState.Inativo)
             StartPart1();
+        else if (currentState == PuzzleState.InserirPeca5)
+            InsertKey5();
         else if (currentState == PuzzleState.SimonParte2)
             StartPart2();
     }
@@ -111,11 +120,20 @@ public class PianoPuzzleController : MonoBehaviour
         RevealKey5();
     }
 
-    // Pe�a que falta
+    
     void RevealKey5()
+    {                                        
+        mirrorGroup.SetActive(true);// espelhos aparecem
+        key5Pickup.gameObject.SetActive(true);
+        key5Pickup.isOn = true;
+
+        // jogador sai automaticamente
+        ExitPiano();
+    }
+
+    public void OnKey5PickedUp()
     {
-        // Aqui disparas a anima��o das meshes
-        Debug.Log("Revelar pe�a 5");
+        currentState = PuzzleState.InserirPeca5;
     }
 
 
@@ -171,8 +189,12 @@ public class PianoPuzzleController : MonoBehaviour
     void CompletePuzzle()
     {
         currentState = PuzzleState.Completo;
+
         ExitPiano();
-        Debug.Log("Puzzle Completo!");
+
+        areaKeyObject.gameObject.SetActive(true);
+
+        areaKeyObject.isOn = true;
     }
 
     public void ExitPiano()
@@ -180,8 +202,6 @@ public class PianoPuzzleController : MonoBehaviour
         cameraController.ExitPiano();
         mouseController.DisableMouse();
     }
-
-
 
     //Salvar o processo do jogador, para que ele possa continuar da parte dois se perder na mesma
     void SaveProgress()
@@ -196,6 +216,8 @@ public class PianoPuzzleController : MonoBehaviour
         if (stage >= 1)
         {
             key5Object.SetActive(true);
+            // garante que a peça 5 nao apareca novamente para poder ser interagida
+            key5Pickup.gameObject.SetActive(false);
             currentState = PuzzleState.SimonParte2;
         }
     }
