@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class PuzzleManager : MonoBehaviour
 
     private int currentStep = 0;
     private bool puzzleCompleted = false;
+
+    public UnityEvent whenComplete;
 
     public void CheckTrampoline(Color trampolineColor)
     {
@@ -74,6 +77,7 @@ public class PuzzleManager : MonoBehaviour
         {
             puzzleCompleted = true;
             audioSource.PlayOneShot(successSound, 1f);
+            whenComplete?.Invoke();
             keyg.SetActive(true);
             FindFirstObjectByType<UIManager>().RefreshCoins();
         }
