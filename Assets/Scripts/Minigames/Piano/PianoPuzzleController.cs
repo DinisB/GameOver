@@ -20,6 +20,7 @@ public class PianoPuzzleController : MonoBehaviour
 
     // Espelhos e peça 5 interagivel
     [SerializeField] private GameObject mirrorGroup;
+    [SerializeField] private Animator mirrorAnimator;
     [SerializeField] private Interactive key5Pickup;
 
     // Referencias as teclas do piano
@@ -46,7 +47,9 @@ public class PianoPuzzleController : MonoBehaviour
 
     void Start()
     {
-        LoadProgress();
+        PlayerPrefs.DeleteKey("PianoPuzzleStage");
+        currentState = PuzzleState.Inativo;
+        // LoadProgress();
     }
 
     void Update()
@@ -69,19 +72,30 @@ public class PianoPuzzleController : MonoBehaviour
     }
 
     public void StartPuzzle()
-    {
-        inputAtivo = true;
+{
+    inputAtivo = true;
 
-        if (currentState == PuzzleState.Inativo)
-            StartPart1();
-        else if (currentState == PuzzleState.InserirPeca5)
-            InsertKey5();
-        else if (currentState == PuzzleState.SimonParte2)
-            StartPart2();
+    if (currentState == PuzzleState.Inativo)
+    {
+        StartPart1();
     }
+    else if (currentState == PuzzleState.InserirPeca5)
+    {
+        ShowKey5OnPiano();
+        StartPart2();
+    }
+    else if (currentState == PuzzleState.SimonParte2)
+    {
+        StartPart2();
+    }
+}
+
    
     void HandleKeyPress(int keyID)
     {
+        if (keyID < 0 || keyID >= keys.Length)
+            return;
+
         keys[keyID].Play();
 
         if (currentState == PuzzleState.SimonParte1)
@@ -89,7 +103,13 @@ public class PianoPuzzleController : MonoBehaviour
         else if (currentState == PuzzleState.SimonParte2)
             HandlePart2(keyID);
     }
-    
+
+    void ShowKey5OnPiano()
+    {
+        key5Object.SetActive(true);
+        currentState = PuzzleState.SimonParte2;
+    }
+
     // Parte um do puzzle
     void StartPart1()
     {
@@ -122,12 +142,13 @@ public class PianoPuzzleController : MonoBehaviour
 
     
     void RevealKey5()
-    {                                        
-        mirrorGroup.SetActive(true);// espelhos aparecem
+    {
+        mirrorGroup.SetActive(true);
+        mirrorAnimator.SetTrigger("Reveal");
         key5Pickup.gameObject.SetActive(true);
         key5Pickup.isOn = true;
 
-        // jogador sai automaticamente
+        inputAtivo = false;  
         ExitPiano();
     }
 
@@ -137,14 +158,14 @@ public class PianoPuzzleController : MonoBehaviour
     }
 
 
-    public void InsertKey5()
-    {
-        key5Object.SetActive(true);
-        SaveProgress();
+    //public void InsertKey5()
+    //{
+        //ey5Object.SetActive(true);
+       //SaveProgress();
 
-        currentState = PuzzleState.SimonParte2;
-        StartPart2();
-    }
+       // currentState = PuzzleState.SimonParte2;
+       //StartPart2();
+   // }
 
     //Parte dois do puzzle
 
