@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.Events;
 
 public class SpinMinigame : MonoBehaviour
 {
@@ -18,6 +18,7 @@ public class SpinMinigame : MonoBehaviour
     private string[] current;
     [SerializeField] private Image[] slotimages;
     private PlayerInventory playerInventory;
+    public UnityEvent whenComplete;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -109,6 +110,7 @@ public class SpinMinigame : MonoBehaviour
             }
 
             yield return new WaitForSeconds(1);
+            whenComplete?.Invoke();
             playerInventory.AddCoin();
             FindFirstObjectByType<UIManager>().RefreshCoins();
             gameObject.SetActive(false);
