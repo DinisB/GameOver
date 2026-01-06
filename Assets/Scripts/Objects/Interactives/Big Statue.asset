@@ -20,6 +20,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cd407e3da7fa9d04baa8d0a731a7d7b4, type: 2}
   - {fileID: 11400000, guid: 34b69d8cf22df88448fea951e02888b4, type: 2}
   - {fileID: 11400000, guid: f53b5da5453620a499f5d1db64b8d32f, type: 2}
-  requirementsMessage: Needs all 3 keys
+  requirementsMessage: Needs all three keys
   interactionMessages:
   - Interact with me for a secret
